@@ -9,7 +9,7 @@ package jgaunt.world;
  *
  * @author woeltjen
  */
-public class Facing extends Position {
+public class Facing extends Position implements Component {
     private float angle;
 
     public Facing (float radians) {

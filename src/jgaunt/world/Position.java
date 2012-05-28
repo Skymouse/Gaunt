@@ -6,10 +6,10 @@
 package jgaunt.world;
 
 /**
- *
+ * TODO: Move, rename "Vector!" Entities have boundaries, not positions - right?
  * @author woeltjen
  */
-public class Position implements Component {
+public class Position {
     private float x, y;
     public Position(float x, float y) {
         this.x = x; this.y = y;
@@ -17,4 +17,5 @@ public class Position implements Component {
     public float getX() { return x; }
     public float getY() { return y; }
     public Position add(Position p) { return new Position(x+p.x, y+p.y); }
+    public Position scale(float s)  { return new Position(x*s,   y*s);   }
 }

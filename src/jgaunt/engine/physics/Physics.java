@@ -7,8 +7,8 @@ package jgaunt.engine.physics;
 
 import jgaunt.engine.Module;
 import jgaunt.world.Entity;
-import jgaunt.world.Position;
 import jgaunt.world.World;
+import jgaunt.world.behavior.Common.Move;
 
 /**
  *
@@ -18,8 +18,8 @@ public class Physics implements Module {
 
     public void run(World w) {
         for (Entity e : w.getEntities())
-            for (Position p : e.get(Position.class))
-                e.set(Position.class, p.add(new Position(0.1f, 0.1f)));
+            for (Move m : e.get(Move.class))
+                m.invoke(e, w);
     }
 
 }

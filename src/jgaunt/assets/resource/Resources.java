@@ -18,6 +18,16 @@ import jgaunt.engine.renderer.swing.Image;
  * @author woeltjen
  */
 public class Resources extends Depot {
+    private static BufferedImage getImage(String key) {
+            try {
+                return ImageIO.read(
+                        Resources.class.getResourceAsStream(key + ".png"));
+            } catch (Exception e) {
+                return new BufferedImage(32, 32, BufferedImage.TYPE_BYTE_INDEXED);
+            }
+
+    }
+
     private static final Storage<Sprite> SPRITES = new Storage<Sprite>() {
 
         public Class<Sprite> getStoredClass() {
@@ -25,13 +35,7 @@ public class Resources extends Depot {
         }
 
         public <T> T retrieve(Class<T> tClass, String key) {
-
-            try {
-                BufferedImage image = ImageIO.read(Resources.class.getResourceAsStream(key + ".png"));
-                return (T) new Image(image.getSubimage(0, 0, 32, 32));
-            } catch (Exception e) {
-                return null;
-            }
+            return (T) new Image(getImage(key).getSubimage(0, 0, 32, 32));
         }
 
     };

@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author woeltjen
  */
-public class Entity {
+public final class Entity implements Cloneable {
     private LinkedList<Component> components = new LinkedList<Component>();
 
     public Entity() {}
@@ -44,4 +44,9 @@ public class Entity {
         add(c);
     }
 
+    @Override
+    public Entity clone() {
+        return new Entity(components);
+    }
+    
 }

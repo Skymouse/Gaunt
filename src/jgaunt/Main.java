@@ -55,15 +55,13 @@ public class Main {
             public void invoke(Entity e, View v) {
                 for (Sprite s : e.get(Sprite.class))
                     for (Boundary b : e.first(Boundary.class))
-                        for (Position p : e.first(Position.class))
-                            v.draw(s, b.add(p));
+                        v.draw(s, b);
             }            
         };
 
         Entity e = new Entity();
         e.add(s);
         e.add(new Boundary( 1, 1));
-        e.add(new Position( 1, 1));
         e.add(r);
 
         w.addEntity(e);
