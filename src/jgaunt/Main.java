@@ -9,6 +9,8 @@ import java.util.Arrays;
 import javax.swing.JFrame;
 
 import jgaunt.assets.Depot;
+import jgaunt.assets.level.Level;
+import jgaunt.assets.level.Populator;
 import jgaunt.assets.resource.Resources;
 import jgaunt.engine.Engine;
 import jgaunt.engine.Module;
@@ -25,6 +27,7 @@ import jgaunt.world.behavior.Common.Move;
 import jgaunt.world.behavior.Common.Render;
 import jgaunt.world.behavior.Standard;
 import jgaunt.world.behavior.Velocity;
+import jgaunt.world.dungeon.Dungeon;
 
 /**
  *
@@ -51,6 +54,7 @@ public class Main {
         Depot depot = new Resources();
 
         Sprite s = depot.retrieve(Sprite.class, "items", null);
+        Dungeon d = new Level(depot.retrieve(Populator.class, "map01"));
 
 
         
@@ -63,6 +67,7 @@ public class Main {
         e.add(r);
         e.add(m);
 
+        w.addEntity(d.spawn());
         w.addEntity(e);
 
         Engine engine = new Engine(w, Arrays.asList(renderer, physics, ticker));

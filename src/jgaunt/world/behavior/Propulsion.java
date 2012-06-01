@@ -28,6 +28,4 @@ public class Propulsion implements Move {
                 e.set(Boundary.class, b.add(f.scale(speed)));
     }
 
-
-
 }

@@ -20,6 +20,10 @@ public class Depot {
         this.stores.addAll(stores);
     }
 
+    public <T> T retrieve (Class<T> tClass, String key) {
+        return retrieve(tClass, key, null);
+    }
+
     public <T> T retrieve (Class<T> tClass, String key, T otherwise) {
         T stored;
         for (Storage<?> store : stores) 

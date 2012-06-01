@@ -18,7 +18,7 @@ public class Catalog<T> implements Convertor<Index, T> {
     private T     defacto;
     private Index maximum;
 
-    public Catalog(List<Convertor<Index, T>> convertors) {
+    private Catalog(List<Convertor<Index, T>> convertors) {
         int max  = 0;
 
         for (Convertor<Index, T> convertor : convertors)
@@ -44,7 +44,8 @@ public class Catalog<T> implements Convertor<Index, T> {
     }
 
     public T convert(Index key) {
-        if (key.get() > conversions.length) return defacto;
+        if (key.get() >= conversions.length) return defacto;
+        if (conversions[key.get()] == null)  return defacto;
         return conversions[key.get()];
     }
 

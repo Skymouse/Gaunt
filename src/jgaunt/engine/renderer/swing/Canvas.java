@@ -5,7 +5,6 @@
 
 package jgaunt.engine.renderer.swing;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
@@ -13,6 +12,7 @@ import jgaunt.engine.renderer.Sprite;
 import jgaunt.engine.renderer.Sprite.Drawable;
 import jgaunt.engine.renderer.View;
 import jgaunt.world.Boundary;
+import jgaunt.world.Position;
 
 /**
  *
@@ -40,10 +40,10 @@ public class Canvas extends JPanel implements View {
         d.draw(this, b);
     }
 
-    public Boundary getVisibleBoundary() {
-        Dimension d = getSize();
-        return new Boundary ((float) d.getWidth () / WORLD_TO_PIXEL,
-                             (float) d.getHeight() / WORLD_TO_PIXEL);
+    public Boundary getVisibleBoundary() {        
+        return new Boundary (new Position(0.0f, 0.0f), new Position(
+                             ((float) getWidth ()) / WORLD_TO_PIXEL,
+                             ((float) getHeight()) / WORLD_TO_PIXEL));
     }
 
     public void draw(BufferedImage i, Boundary b) {

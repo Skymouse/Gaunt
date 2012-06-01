@@ -9,9 +9,6 @@ import java.awt.image.BufferedImage;
 import jgaunt.assets.level.Convertor;
 import jgaunt.assets.level.Coordinate;
 import jgaunt.assets.level.Index;
-import jgaunt.assets.level.Populator;
-import jgaunt.world.Entity;
-import jgaunt.world.Prototype;
 
 /**
  *

@@ -24,6 +24,4 @@ public class Solid implements Collide {
                         impact.invoke(other, e);
     }
 
-
-
 }
