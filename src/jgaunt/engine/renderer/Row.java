@@ -23,6 +23,6 @@ public class Row implements Animation {
     }
 
     public Sprite getSprite(int frame) {
-        return gallery.getSprite(row, frame);
+        return gallery.getSprite(row, frame % frames());
     }
 }

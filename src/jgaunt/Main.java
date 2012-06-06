@@ -5,15 +5,18 @@
 
 package jgaunt;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.JFrame;
-
 import jgaunt.assets.Depot;
+
 import jgaunt.assets.level.Level;
 import jgaunt.assets.level.Populator;
 import jgaunt.assets.resource.Resources;
 import jgaunt.engine.Engine;
 import jgaunt.engine.Module;
+import jgaunt.engine.logic.Thinker;
 import jgaunt.engine.physics.Physics;
 import jgaunt.engine.renderer.Renderer;
 import jgaunt.engine.renderer.Sprite;
@@ -48,9 +51,13 @@ public class Main {
         frame.setVisible(true);
 
         World w = new World();
-        Module renderer = new Renderer(canvas);
-        Module physics  = new Physics();
-        Module ticker   = new Ticker(30.0);
+
+        List<Module> modules = new ArrayList<Module>();
+        modules.add(new Renderer(canvas));
+        modules.add(new Physics());
+        modules.add(new Ticker(30.0));
+        modules.add(new Thinker());
+
         Depot depot = new Resources();
 
         Sprite s = depot.retrieve(Sprite.class, "items", null);
@@ -70,7 +77,7 @@ public class Main {
         w.addEntity(d.spawn());
         w.addEntity(e);
 
-        Engine engine = new Engine(w, Arrays.asList(renderer, physics, ticker));
+        Engine engine = new Engine(w, modules);
         engine.run();
     }
 
