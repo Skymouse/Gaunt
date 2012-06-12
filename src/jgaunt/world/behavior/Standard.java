@@ -13,7 +13,7 @@ import jgaunt.world.behavior.Common.Render;
  * @author woeltjen
  */
 public class Standard {
-    public static final Render  RENDER  = new Paint();
-    public static final Collide COLLIDE = new Solid();
-
+    public static final Render  RENDER     = new Paint();
+    public static final Collide COLLIDE    = new Solid();
+    public static final Render  HOLOGRAPHY = new Holography();
 }

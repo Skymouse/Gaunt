@@ -7,12 +7,9 @@ package jgaunt.world.dungeon;
 
 import java.util.Arrays;
 import jgaunt.engine.renderer.View;
-import jgaunt.world.Boundary;
-import jgaunt.world.Component;
-import jgaunt.world.Entity;
-import jgaunt.world.Position;
-import jgaunt.world.Prototype;
+import jgaunt.world.*;
 import jgaunt.world.behavior.Common.Render;
+import jgaunt.world.behavior.Common.Think;
 
 
 /**
@@ -81,6 +78,7 @@ public class Dungeon extends Prototype implements Component { //TODO: Implements
         return new Entity(Arrays.asList(
                 this,
                 RENDER,
+                THINK,
                 new Boundary(new Position(0.0f, 0.0f), 
                              new Position(1.0f * width, 1.0f * height))
         ));
@@ -101,6 +99,20 @@ public class Dungeon extends Prototype implements Component { //TODO: Implements
                         for (Render r : (e=d.getEntity(x, y)).get(Render.class))
                             r.invoke(e, view);
         }
+    };
+    
+    private static final Think THINK = new Think() {
+
+        @Override
+        public void invoke(Entity e, World world) {       
+            e.remove(this);
+            for (Dungeon d : e.get(Dungeon.class))
+                for (int x = 0; x < d.width; x++)
+                    for (int y = 0; y < d.height; y++)
+                        for (Think t : (e=d.getEntity(x, y)).get(Think.class) )
+                            t.invoke(e, world);                        
+        }
+        
     };
 
     private static final Entity   EMPTY = new Entity();

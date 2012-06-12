@@ -25,7 +25,7 @@ public class Holography implements Render {
                 for (Facing f : e.get(Facing.class))
                     for (World w : e.first(World.class))
                         view.draw(holo.getAnimation(f.getAngle())
-                                      .getSprite(w.getTicks()), b);
+                                      .getSprite(w.getTicks() / 4), b);
     }
 
 }

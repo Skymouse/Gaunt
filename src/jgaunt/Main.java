@@ -29,7 +29,7 @@ import jgaunt.world.World;
 import jgaunt.world.behavior.Common.Move;
 import jgaunt.world.behavior.Common.Render;
 import jgaunt.world.behavior.Standard;
-import jgaunt.world.behavior.Velocity;
+import jgaunt.world.behavior.movement.Velocity;
 import jgaunt.world.dungeon.Dungeon;
 
 /**

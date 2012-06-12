@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package jgaunt.world.behavior;
+package jgaunt.world.behavior.movement;
 
 import jgaunt.world.Boundary;
 import jgaunt.world.Entity;
@@ -15,7 +15,7 @@ import jgaunt.world.behavior.Common.Move;
  *
  * @author woeltjen
  */
-public class Propulsion implements Move {
+public class Propulsion extends Motion implements Move {
     private float speed;
 
     public Propulsion (float speed) {
@@ -24,8 +24,7 @@ public class Propulsion implements Move {
 
     public void invoke(Entity e, World argument) {
         for (Facing f : e.first(Facing.class))
-            for (Boundary b : e.first(Boundary.class))
-                e.set(Boundary.class, b.add(f.scale(speed)));
+            move (e, f.scale(speed));
     }
 
 }

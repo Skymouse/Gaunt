@@ -31,6 +31,7 @@ public class Spawn extends Prototype {
 
     private class Generator implements Think {
 
+        @Override
         public void invoke(Entity e, World w) {
             Entity   spawn = prototype.spawn();
 

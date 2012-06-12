@@ -9,10 +9,22 @@ import java.util.*;
 public class World implements Component {
     private int ticks = 0;
     private Collection<Entity> entities = new ArrayList<Entity>();
+    private Collection<Entity> fresh    = new ArrayList<Entity>();
+    private Collection<Entity> stale    = new ArrayList<Entity>();
     
     public  int getTicks() { return ticks; }
     
-    public  void tick(int count) { ticks += count; }
+    public  void tick(int count) {
+        // TODO: Move out of tick?
+        for (Entity e : stale) e.remove(this);
+        for (Entity e : fresh) e.set(World.class, this);
+        entities.removeAll(stale);
+        entities.addAll   (fresh);
+        stale.clear();
+        fresh.clear();
+        
+        ticks += count; 
+    }
 
     public Collection<Entity> getEntities() {
         return entities;
@@ -27,8 +39,11 @@ public class World implements Component {
     }
 
     public void addEntity(Entity e) {
-        entities.add(e);
-        e.set(World.class, this);
+        fresh.add(e);
+    }
+    
+    public void removeEntity(Entity e) {
+        stale.add(e);
     }
 
 

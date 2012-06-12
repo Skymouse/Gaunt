@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package jgaunt.world.behavior;
+package jgaunt.world.behavior.movement;
 
 import jgaunt.world.Boundary;
 import jgaunt.world.Entity;
@@ -22,6 +22,7 @@ public class Velocity implements Move {
         this.inertia = inertia;
     }
 
+    @Override
     public void invoke(Entity e, World argument) {
         //TODO: Check for elapsed ticks?
         for (Boundary b : e.first(Boundary.class))

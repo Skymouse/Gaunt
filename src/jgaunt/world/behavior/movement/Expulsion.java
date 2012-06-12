@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package jgaunt.world.behavior;
+package jgaunt.world.behavior.movement;
 
 import jgaunt.world.Boundary;
 import jgaunt.world.Entity;
