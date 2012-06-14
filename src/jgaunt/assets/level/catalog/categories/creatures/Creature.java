@@ -5,6 +5,8 @@
 package jgaunt.assets.level.catalog.categories.creatures;
 
 import jgaunt.world.*;
+import jgaunt.world.behavior.Standard;
+import jgaunt.world.components.Speed;
 
 /**
  *
@@ -19,14 +21,12 @@ public abstract class Creature extends Prototype {
         Entity e = new Entity();
         
         e.add(BOUNDARY);
-        e.add(new Facing(0) {
-
-            @Override
-            public float getAngle() {
-                return (float) Math.PI * (float) (System.currentTimeMillis() % 1000) / 1000;
-            }
-            
-        });
+        e.add(new Facing(0));
+        e.add(Standard.COLLIDE);
+        e.add(Standard.IMPACT);
+        
+        e.add(new Player("test"));
+        e.add(new Speed(20));
         
         return e;
     }

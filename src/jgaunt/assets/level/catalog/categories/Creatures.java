@@ -32,8 +32,7 @@ public class Creatures extends Category {
             Specification s = specifications.convert(index).apply(prototype);
             s.add(new Reuser(Hologram.class, holograms.convert(index)));
             s.add(new Reuser(Render.class, Standard.HOLOGRAPHY));
-            prototypes[index.get()] = new Spawn( s );
-            
+            prototypes[index.get()] = new Spawn( s );            
         }
     }
     

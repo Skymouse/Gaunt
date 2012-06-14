@@ -23,8 +23,9 @@ public class Propulsion extends Motion implements Move {
     }
 
     public void invoke(Entity e, World argument) {
-        for (Facing f : e.first(Facing.class))
-            move (e, f.scale(speed));
+        if (speed > 0)
+            for (Facing f : e.first(Facing.class))
+                move (e, f.scale(speed));
     }
 
 }

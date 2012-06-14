@@ -38,13 +38,14 @@ public class Specification extends Prototype {
         return specification;
     }
     
+    public Entity apply(Entity e) {
+        for (Contributor c : contributors) c.contribute(e);
+        return e;
+    }
+    
     @Override
     public Entity spawn() {
-        Entity e = parent.spawn();
-        
-        for (Contributor c : contributors) c.contribute(e);
-        
-        return e;
+        return apply(parent.spawn());
     }
     
     public void add(Specifier s) {

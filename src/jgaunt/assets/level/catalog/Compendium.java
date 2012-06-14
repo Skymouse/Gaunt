@@ -101,7 +101,9 @@ public class Compendium {
             @Override
             public Hologram convert(Index key) {
                 return new Rotary(
-                        new Column (gallery, key.get() % gallery.columns()), 4);
+                        new Column (gallery, key.get() % gallery.columns()),
+                        4,
+                        -(float) (Math.PI / 3));
             }
 
             @Override

@@ -4,11 +4,13 @@
  */
 package jgaunt.world.components;
 
+import jgaunt.world.Component;
+
 /**
  *
  * @author woeltjen
  */
-public abstract class Score {
+public abstract class Score implements Component { //TODO: Replicant!
     private int score;
     
     public Score(int score) {

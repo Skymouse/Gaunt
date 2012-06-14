@@ -8,6 +8,7 @@ package jgaunt.world.dungeon;
 import java.util.Arrays;
 import jgaunt.engine.renderer.View;
 import jgaunt.world.*;
+import jgaunt.world.behavior.Common.Collide;
 import jgaunt.world.behavior.Common.Render;
 import jgaunt.world.behavior.Common.Think;
 
@@ -79,6 +80,7 @@ public class Dungeon extends Prototype implements Component { //TODO: Implements
                 this,
                 RENDER,
                 THINK,
+                COLLIDE,
                 new Boundary(new Position(0.0f, 0.0f), 
                              new Position(1.0f * width, 1.0f * height))
         ));
@@ -111,6 +113,25 @@ public class Dungeon extends Prototype implements Component { //TODO: Implements
                     for (int y = 0; y < d.height; y++)
                         for (Think t : (e=d.getEntity(x, y)).get(Think.class) )
                             t.invoke(e, world);                        
+        }
+        
+    };
+    
+    private static final Collide COLLIDE = new Collide() {
+
+        @Override
+        public void invoke(Entity e, Entity other) {
+            for (Boundary b : other.get(Boundary.class)) {
+                int x1 = (int) Math.floor(b.getMinimum().getX());
+                int y1 = (int) Math.floor(b.getMinimum().getY());
+                int x2 = (int) Math.ceil (b.getMaximum().getX());
+                int y2 = (int) Math.ceil (b.getMaximum().getY());
+                for (Dungeon d : e.get(Dungeon.class))
+                    for (int x = x1; x <= x2; x++)
+                        for (int y = y1; y <= y2; y++)
+                            for (Collide c : d.getEntity(x, y).get(Collide.class))
+                                c.invoke(d.getEntity(x,y), other);
+            }
         }
         
     };

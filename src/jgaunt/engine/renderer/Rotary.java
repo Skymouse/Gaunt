@@ -11,10 +11,12 @@ package jgaunt.engine.renderer;
 public class Rotary implements Hologram {
     private Animation   animation;
     private Animation[] animations;
+    private float       start;
     private int         angles;
     private int         frames;
     
-    public Rotary (Animation animation, int angles) {
+    public Rotary (Animation animation, int angles, float start) {
+        this.start      = start;
         this.animation  = animation;
         this.angles     = angles;
         this.frames     = animation.frames() / angles;
@@ -23,10 +25,15 @@ public class Rotary implements Hologram {
             animations[i] = new Sequence(i * frames);
     }
     
+   
+    
     @Override
     public Animation getAnimation(float angle) {
-        int index = (int) (angles * angle / (float) Math.PI * 2.0f);
-        return animations[index % angles];
+        while (angle < 0.0f) angle += Math.PI * 2.0;
+        float rotations = (angle - start) / (float) (Math.PI * 2.0f);
+        int   shift     = (int) (rotations * angles);
+        int   index = shift % angles;
+        return animations[index];
     }
     
     private class Sequence implements Animation {

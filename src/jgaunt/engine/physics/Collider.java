@@ -20,7 +20,8 @@ public class Collider implements Module {
         for (Entity e : w.getEntities())
             for (Collide c : e.get(Collide.class))
                 for (Entity other : w.getEntities())
-                    c.invoke(e, other);
+                    if (!e.equals(other))
+                        c.invoke(e, other);
     }
 
 }
