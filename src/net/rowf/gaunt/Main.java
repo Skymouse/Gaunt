@@ -26,6 +26,7 @@ import net.rowf.gaunt.engine.physics.Collider;
 import net.rowf.gaunt.engine.physics.Physics;
 import net.rowf.gaunt.engine.renderer.Renderer;
 import net.rowf.gaunt.engine.renderer.Sprite;
+import net.rowf.gaunt.engine.renderer.Watcher;
 import net.rowf.gaunt.engine.renderer.swing.Canvas;
 import net.rowf.gaunt.engine.timing.Ticker;
 import net.rowf.gaunt.world.*;
@@ -48,13 +49,15 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame frame  = new JFrame("Gaunt's Dungeon");
-        Canvas canvas = new Canvas();
-        Arrows keypad = new Arrows(KeyEvent.VK_UP  , KeyEvent.VK_DOWN,
+        JFrame  frame   = new JFrame("Gaunt's Dungeon");
+        Canvas  canvas  = new Canvas();
+        Arrows  keypad  = new Arrows(KeyEvent.VK_UP  , KeyEvent.VK_DOWN,
                                    KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+        Watcher watcher = new Watcher();
         
-        Specification controls = new Specification();
-        controls.add(new Reuser(Think.class, new Pilot(keypad)));
+        Specification player = new Specification();
+        player.add(new Reuser(Think.class, new Pilot(keypad)));
+        player.add(new Reuser(Think.class, watcher));
         Initialization initialization = new Initialization( 
                 new Criterion() {
                     @Override
@@ -65,7 +68,7 @@ public class Main {
                         return !e.get(Player.class).isEmpty();
                     }
                 },
-                controls,
+                player,
                 true
         );
         
@@ -75,6 +78,7 @@ public class Main {
         frame.setVisible(true);
 
         frame.addKeyListener(keypad);
+        canvas.setCamera(watcher);
 
         
         World w = new World();
