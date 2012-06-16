@@ -1,0 +1,27 @@
+Character (Creature)
+
+Warrior (Character)
+Health:   100
+Special:  20
+Strength: 10
+Speed:    6
+Favored:  Strength
+
+Wizard  (Character)
+Health:   40
+Special:  100
+Strength: 2
+Speed:    6
+
+Thief   (Character)
+Health:   60
+Special:  60
+Strength: 2
+Speed:    10
+Favored:  Speed
+
+Healer  (Character)
+Health:   80
+Special:  80
+Strength: 4
+Speed:    4

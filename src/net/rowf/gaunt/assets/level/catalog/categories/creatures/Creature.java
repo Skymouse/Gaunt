@@ -24,10 +24,7 @@ public abstract class Creature extends Prototype {
         e.add(new Facing(0));
         e.add(Standard.COLLIDE);
         e.add(Standard.IMPACT);
-        
-        e.add(new Player("test"));
-        e.add(new Speed(20));
-        
+                
         return e;
     }
     
