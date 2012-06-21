@@ -1,3 +1,7 @@
 Creature (Base)
 Facing
-Size:   1
+Size:        1
+Health:      1
+Speed:      10
+Strength:   10
+Experience:  0

@@ -32,9 +32,13 @@ public class Axioms implements Transcriber {
             new Axiom   (Standard.RENDER),
             new Axiom   (new Facing(0)),
             new Scored  (new Strength(0)),
-            new Scored  (new Health(0)),
             new Scored  (new Speed(0)),
-            new Scored  (new Experience(0))
+            new Scored  (new Mind(0)),
+            new Scored  (new Toughness(0)),
+            new Scored  (new Health(0)),
+            new Scored  (new Power(0)),
+            new Scored  (new Experience(0)),
+            new Numeric (new Size(1))
     );
 
     @Override
@@ -46,7 +50,7 @@ public class Axioms implements Transcriber {
         private Specifier specifier;
         private boolean   overrides;
         public Axiom(Component component) {
-            this(component, false);
+            this(component, true);
         }        
         public Axiom(Component component, boolean overrides) {
             specifier = new Reuser(component.getClass(), component);
@@ -70,7 +74,7 @@ public class Axioms implements Transcriber {
         private String   name;
         private Class<C> c;
         public Qualitative(Class<C> c) {
-            this(c, false);
+            this(c, true);
         }
         public Qualitative(Class<C> c, boolean o) {
             this.name      = c.getSimpleName();

@@ -1,0 +1,35 @@
+Hero (Creature)
+
+Warrior (Hero)
+Health:   100
+Power:     20
+Strength:  10
+Speed:      6
+Favored:  Strength
+
+Wizard  (Hero)
+Health:     40
+Power:     100
+Strength:    2
+Speed:       6
+Mind:       10
+Toughness:   2
+Favored:   Mind
+
+Thief   (Hero)
+Health:    60
+Power:     60
+Strength:   2
+Speed:     10
+Mind:       6
+Toughness:  4
+Favored:   Speed
+
+Healer  (Hero)
+Health:    80
+Power:     80
+Strength:   4
+Speed:      4
+Mind:       8
+Toughness:  6
+Favored:  Toughness
