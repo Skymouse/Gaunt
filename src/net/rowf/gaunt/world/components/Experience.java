@@ -13,5 +13,15 @@ public class Experience extends Score {
     public Experience(int score) {
         super(score);
     }
+
+    @Override
+    public Class getReplicatedClass() {
+        return Experience.class;
+    }
+
+    @Override
+    public Parameterizable<Integer> replicate() {
+        return new Experience(get());
+    }
     
 }

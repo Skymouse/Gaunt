@@ -10,7 +10,7 @@ import net.rowf.gaunt.world.Replicant;
  *
  * @author woeltjen
  */
-public class Health extends Score implements Replicant<Health> {
+public class Health extends Score {
  
     public Health(int health) {
         super(health);

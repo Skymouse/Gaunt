@@ -11,28 +11,28 @@ package net.rowf.gaunt.world;
  */
 public class Boundary implements Component {
 
-    private Position minimum;
-    private Position maximum;
+    private Vector minimum;
+    private Vector maximum;
 
     public Boundary (float width, float height) {
-        minimum = new Position(-width/2, -height/2);
-        maximum = new Position( width/2,  height/2);
+        minimum = new Vector(-width/2, -height/2);
+        maximum = new Vector( width/2,  height/2);
     }
 
-    public Boundary (Position min, Position max) {
+    public Boundary (Vector min, Vector max) {
         minimum = min;
         maximum = max;
     }
 
-    public Position getMaximum() {
+    public Vector getMaximum() {
         return maximum;
     }
 
-    public Position getMinimum() {
+    public Vector getMinimum() {
         return minimum;
     }
 
-    public Boundary add(Position p) {
+    public Boundary add(Vector p) {
         return new Boundary(minimum.add(p), maximum.add(p));
     }
 
@@ -43,8 +43,8 @@ public class Boundary implements Component {
                maximum.getY() > b.getMinimum().getY();
     }
 
-    public Position eject(Boundary b) {
-        if (!overlaps(b)) return new Position(0.0f, 0.0f);
+    public Vector eject(Boundary b) {
+        if (!overlaps(b)) return new Vector(0.0f, 0.0f);
 
         float x1 = maximum.getX() - b.getMinimum().getX();
         float x2 = minimum.getX() - b.getMaximum().getX();
@@ -53,8 +53,8 @@ public class Boundary implements Component {
         float x  = (Math.abs(x1) < Math.abs(x2)) ? x1 : x2;
         float y  = (Math.abs(y1) < Math.abs(y2)) ? y1 : y2;
 
-        if (Math.abs(x) < Math.abs(y)) return new Position(x, 0);
-        if (Math.abs(x) > Math.abs(y)) return new Position(0, y);        
-        return new Position(x, y);
+        if (Math.abs(x) < Math.abs(y)) return new Vector(x, 0);
+        if (Math.abs(x) > Math.abs(y)) return new Vector(0, y);        
+        return new Vector(x, y);
     }
 }

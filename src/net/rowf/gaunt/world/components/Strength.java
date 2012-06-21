@@ -13,5 +13,16 @@ public class Strength extends Score {
     public Strength(int score) {
         super(score);
     }
+
+    @Override
+    public Class getReplicatedClass() {
+        return Strength.class;
+    }
+
+    @Override
+    public Strength replicate() {
+        return new Strength(get());
+    }
+    
     
 }

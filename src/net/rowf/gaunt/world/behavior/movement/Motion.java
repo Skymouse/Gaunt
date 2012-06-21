@@ -6,14 +6,14 @@ package net.rowf.gaunt.world.behavior.movement;
 
 import net.rowf.gaunt.world.Boundary;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Position;
+import net.rowf.gaunt.world.Vector;
 
 /**
  *
  * @author woeltjen
  */
 public abstract class Motion {
-    public void move (Entity e, Position p) {
+    public void move (Entity e, Vector p) {
         for (Boundary b : e.first(Boundary.class))
             e.set(Boundary.class, b.add(p));
     }

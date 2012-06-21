@@ -29,7 +29,7 @@ public class Dictionary {
         return qualifiers.get(name).getSpecification(parameter);
     }
         
-    public <T> void recordQuality(String name, Quality<T> quality, Parser<T> parser) {
+    public <T> void recordQuality(String name, Quality<T> quality, Decoder<T> parser) {
         qualifiers.put(name, new Qualifier(parser, quality));
     }
     
@@ -44,27 +44,31 @@ public class Dictionary {
         specifications.put(name, specification);
     }
     
-    public interface Parser<T> {
-        public T parse(String argument);
+    public void record (Descriptor descriptor) {
+        specifications.put(descriptor.getName(), new Definition(this, descriptor));
+    }
+    
+    public interface Decoder<T> {
+        public T decode(String argument);
     }
     
     private class Qualifier<T> {
-        private Parser<T>  parser;
+        private Decoder<T> decoder;
         private Quality<T> quality;
 
-        public Qualifier(Parser<T> parser, Quality<T> quality) {
-            this.parser = parser;
+        public Qualifier(Decoder<T> decoder, Quality<T> quality) {
+            this.decoder = decoder;
             this.quality = quality;
         }
 
         public Specification getSpecification(final String parameter) {
-            return quality.get(parser.parse(parameter));
+            return quality.get(decoder.decode(parameter));
         }                
     }
     
-    public static final Parser<Integer> INTEGER_PARSER = new Parser<Integer>() {
+    public static final Decoder<Integer> INTEGER_DECODER = new Decoder<Integer>() {
         @Override
-        public Integer parse(String argument) {
+        public Integer decode(String argument) {
             try {
                 return Integer.parseInt(argument);
             } catch (Exception e) {
@@ -73,9 +77,9 @@ public class Dictionary {
         }
     };
     
-    public static final Parser<Float> FLOAT_PARSER = new Parser<Float>() {
+    public static final Decoder<Float> FLOAT_DECODER = new Decoder<Float>() {
         @Override
-        public Float parse(String argument) {
+        public Float decode(String argument) {
             try {
                 return Float.parseFloat(argument);
             } catch (Exception e) {
@@ -84,9 +88,9 @@ public class Dictionary {
         }
     };
     
-    public static final Parser<String> STRING_PARSER = new Parser<String>() {
+    public static final Decoder<String> STRING_DECODER = new Decoder<String>() {
         @Override
-        public String parse(String argument) {
+        public String decode(String argument) {
             try {
                 return argument;
             } catch (Exception e) {
@@ -95,14 +99,14 @@ public class Dictionary {
         }
     };
     
-    public Parser<Class<? extends Component>> getComponentClassParser() {
+    public Decoder<Class<? extends Component>> getComponentClassParser() {
         return componentClassParser;
     }
     
-    private final Parser<Class<? extends Component>> componentClassParser =
-        new Parser<Class<? extends Component>>() {       
+    private final Decoder<Class<? extends Component>> componentClassParser =
+        new Decoder<Class<? extends Component>>() {       
         @Override
-        public Class<? extends Component> parse(String argument) {
+        public Class<? extends Component> decode(String argument) {
             if (classes.containsKey(argument)) {
                 return classes.get(argument);
             } else {

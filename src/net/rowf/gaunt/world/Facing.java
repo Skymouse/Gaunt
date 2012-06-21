@@ -9,7 +9,7 @@ package net.rowf.gaunt.world;
  *
  * @author woeltjen
  */
-public class Facing extends Position implements Component {
+public class Facing extends Vector implements Component {
     private float angle;
 
     public Facing (float radians) {
@@ -18,4 +18,5 @@ public class Facing extends Position implements Component {
     }
 
     public float getAngle() { return angle; }
+
 }

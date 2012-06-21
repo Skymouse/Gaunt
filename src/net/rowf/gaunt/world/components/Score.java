@@ -4,13 +4,11 @@
  */
 package net.rowf.gaunt.world.components;
 
-import net.rowf.gaunt.world.Component;
-
 /**
  *
  * @author woeltjen
  */
-public abstract class Score implements Component { //TODO: Replicant!
+public abstract class Score implements Parameterizable<Integer> { //TODO: Replicant!
     private int score;
     
     public Score(int score) {
@@ -25,6 +23,10 @@ public abstract class Score implements Component { //TODO: Replicant!
         return score = amount;
     }
     
+    public void set(Integer amount) {
+        set(amount.intValue());
+    }
+    
     public int increment(int amount) {
         return set(get() + amount);
     }
@@ -32,4 +34,6 @@ public abstract class Score implements Component { //TODO: Replicant!
     public int decrement(int amount) {
         return increment(-amount);
     }
+    
+    
 }

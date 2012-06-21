@@ -36,8 +36,8 @@ public class Dungeon extends Prototype implements Component { //TODO: Implements
 
         e = e.clone();  //TODO: Just use e & warn in javadoc?
         e.set(Boundary.class, new Boundary(
-                new Position(x * 1.0f, y * 1.0f),
-                new Position(x * 1.0f + 1.0f, y * 1.0f + 1.0f)));
+                new Vector(x * 1.0f, y * 1.0f),
+                new Vector(x * 1.0f + 1.0f, y * 1.0f + 1.0f)));
         e.set(Dungeon.class, this);
         
         return tiles[x + y * width] = e;
@@ -81,8 +81,8 @@ public class Dungeon extends Prototype implements Component { //TODO: Implements
                 RENDER,
                 THINK,
                 COLLIDE,
-                new Boundary(new Position(0.0f, 0.0f), 
-                             new Position(1.0f * width, 1.0f * height))
+                new Boundary(new Vector(0.0f, 0.0f), 
+                             new Vector(1.0f * width, 1.0f * height))
         ));
     }
 

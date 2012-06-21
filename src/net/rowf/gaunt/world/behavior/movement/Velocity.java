@@ -7,7 +7,7 @@ package net.rowf.gaunt.world.behavior.movement;
 
 import net.rowf.gaunt.world.Boundary;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Position;
+import net.rowf.gaunt.world.Vector;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.behavior.Common.Move;
 
@@ -16,9 +16,9 @@ import net.rowf.gaunt.world.behavior.Common.Move;
  * @author woeltjen
  */
 public class Velocity implements Move {
-    private Position inertia;
+    private Vector inertia;
 
-    public Velocity(Position inertia) {
+    public Velocity(Vector inertia) {
         this.inertia = inertia;
     }
 

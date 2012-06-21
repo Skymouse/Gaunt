@@ -33,6 +33,7 @@ import net.rowf.gaunt.world.*;
 import net.rowf.gaunt.world.behavior.Common.Move;
 import net.rowf.gaunt.world.behavior.Common.Render;
 import net.rowf.gaunt.world.behavior.Common.Think;
+import net.rowf.gaunt.world.behavior.Holography;
 import net.rowf.gaunt.world.behavior.Standard;
 import net.rowf.gaunt.world.behavior.movement.Velocity;
 import net.rowf.gaunt.world.dungeon.Dungeon;
@@ -52,7 +53,7 @@ public class Main {
         JFrame  frame   = new JFrame("Gaunt's Dungeon");
         Canvas  canvas  = new Canvas();
         Arrows  keypad  = new Arrows(KeyEvent.VK_UP  , KeyEvent.VK_DOWN,
-                                   KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+                                     KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
         Watcher watcher = new Watcher();
         
         Specification player = new Specification();
@@ -65,7 +66,7 @@ public class Main {
                         for (Boundary b : e.get(Boundary.class))
                             if(b.getMinimum().getX() + b.getMinimum().getY() > 20)
                                 return false;
-                        return !e.get(Player.class).isEmpty();
+                        return !e.get(Holography.class).isEmpty(); //TODO: Normally player!
                     }
                 },
                 player,
@@ -99,7 +100,7 @@ public class Main {
 
         
         Render r = Standard.RENDER;
-        Move   m = new Velocity(new Position(0.1f,0.1f));
+        Move   m = new Velocity(new Vector(0.1f,0.1f));
 
         Entity e = new Entity();
         e.add(s);

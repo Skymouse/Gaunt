@@ -13,7 +13,7 @@ import net.rowf.gaunt.engine.renderer.Sprite;
 import net.rowf.gaunt.engine.renderer.Sprite.Drawable;
 import net.rowf.gaunt.engine.renderer.View;
 import net.rowf.gaunt.world.Boundary;
-import net.rowf.gaunt.world.Position;
+import net.rowf.gaunt.world.Vector;
 
 /**
  *
@@ -27,7 +27,7 @@ public class Canvas extends JPanel implements View, Camera {
     private int             visible = 0;
     
     private Camera          camera = this;
-    private Position        origin = new Position(0,0);
+    private Vector        origin = new Vector(0,0);
     
     public Canvas() {
         buffer[0] = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
@@ -51,7 +51,7 @@ public class Canvas extends JPanel implements View, Camera {
     }
     
     public Boundary getVisibleBoundary(float width, float height) {
-        return new Boundary(new Position(0,0), new Position(width,height));
+        return new Boundary(new Vector(0,0), new Vector(width,height));
     }
 
     public void draw(BufferedImage i, Boundary b) {

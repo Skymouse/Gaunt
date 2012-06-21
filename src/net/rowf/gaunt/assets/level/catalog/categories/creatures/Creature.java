@@ -14,7 +14,7 @@ import net.rowf.gaunt.world.components.Speed;
  */
 public abstract class Creature extends Prototype {
     private static final Boundary BOUNDARY =
-            new Boundary(new Position(0.0f, 0.0f), new Position(1.0f, 1.0f));
+            new Boundary(new Vector(0.0f, 0.0f), new Vector(1.0f, 1.0f));
     
     @Override
     public Entity spawn() {

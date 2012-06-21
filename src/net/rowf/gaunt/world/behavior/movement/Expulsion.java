@@ -7,7 +7,7 @@ package net.rowf.gaunt.world.behavior.movement;
 
 import net.rowf.gaunt.world.Boundary;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Position;
+import net.rowf.gaunt.world.Vector;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.behavior.Common.Impact;
 
@@ -26,7 +26,7 @@ public class Expulsion implements Impact {
 
     private class Impulse extends Velocity {
 
-        public Impulse(Position inertia) {
+        public Impulse(Vector inertia) {
             super(inertia);
         }
 

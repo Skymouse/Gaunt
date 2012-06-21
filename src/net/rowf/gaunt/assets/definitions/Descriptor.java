@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
  */
 public class Descriptor {
     private List<Description> entries = new ArrayList<Description>();
+
     private String      name;
     private String      parent;
 
@@ -43,6 +44,23 @@ public class Descriptor {
 
     public String getParent() {
         return parent;
+    }
+    
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
+    
+    public void addEntry(String left) {
+        addEntry(left, null);
+    }
+    
+    public void addEntry(String left, String right) {
+        entries.add(new Description(left, right));
     }
     
     public class Description extends Pair<String, String> {

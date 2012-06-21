@@ -56,12 +56,16 @@ public class Specification extends Prototype {
         contributors.add(new Adder(s));
     }
 
-    public void addset(Specifier s) {
+    public void set(Specifier s) {
         contributors.add(new Setter(s));
     }
     
     public void set(Collection<Specifier> s) {
         contributors.add(new Setter(s));
+    }
+    
+    public void inherit(Specification specification) {
+        contributors.add(new Inheritor(specification));
     }
     
     private interface Contributor {
@@ -86,7 +90,7 @@ public class Specification extends Prototype {
         }
     }
     
-    public class Setter implements Contributor {
+    private class Setter implements Contributor {
         private List<Specifier> specifiers = new ArrayList<Specifier>();
         
         public Setter(Specifier specifier) {
@@ -104,4 +108,17 @@ public class Specification extends Prototype {
         }
     }
     
+    private class Inheritor implements Contributor {
+        private Specification specification;
+        
+        public Inheritor(Specification specification) {
+            this.specification = specification;
+        }
+
+        @Override
+        public void contribute(Entity e) {
+            specification.apply(e);
+        }
+        
+    }
 }

@@ -4,7 +4,7 @@
  */
 package net.rowf.gaunt.assets.definitions;
 
-import java.util.List;
+import net.rowf.gaunt.assets.definitions.Descriptor.Description;
 import net.rowf.gaunt.world.dungeon.spawns.Specification;
 
 /**
@@ -12,7 +12,11 @@ import net.rowf.gaunt.world.dungeon.spawns.Specification;
  * @author woeltjen
  */
 public class Definition extends Specification {
-    public Definition (Dictionary dictionary, List<String> description) {
-        
+    public Definition (Dictionary dictionary, Descriptor descriptor) {
+        inherit(dictionary.getSpecification(descriptor.getParent()));
+        for (Description d : descriptor.getEntries()) 
+            inherit(d.hasParameter() ?
+                    dictionary.getSpecification(d.getLeft(), d.getRight()) :
+                    dictionary.getSpecification(d.getLeft()));
     }
 }
