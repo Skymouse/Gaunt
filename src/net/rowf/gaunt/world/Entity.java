@@ -9,6 +9,8 @@ import java.util.*;
  */
 public final class Entity implements Cloneable {
     private LinkedList<Component> components = new LinkedList<Component>();
+    private Map<Class, Collection<Component>> cache = 
+            new HashMap<Class, Collection<Component>>();
 
     public Entity() {}
 
@@ -22,24 +24,30 @@ public final class Entity implements Cloneable {
     }
 
     public <C extends Component> Collection<C> get(Class<C> bClass) {
+        if (cache.containsKey(bClass)) return (Collection<C>) cache.get(bClass);
         Collection<C> subset = new ArrayList<C>();
         for (Component c : components) if (bClass.isAssignableFrom(c.getClass())) subset.add((C)c);
+        cache.put(bClass, (Collection<Component>) subset);
         return subset;
     }
 
     public void add (Component c) {
+        cache.clear();
         components.add(c);
     }
 
     public void remove(Component c) {
+        cache.clear();
         components.remove(c);
     }
 
     public <C extends Component> void removeAll(Class<C> cClass) {
+        cache.clear();
         components.removeAll(get(cClass));
     }
 
     public <C extends Component> void set (Class<C> cClass, C c) {
+        cache.clear();
         removeAll(cClass);
         add(c);
     }

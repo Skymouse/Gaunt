@@ -36,6 +36,7 @@ import net.rowf.gaunt.world.behavior.Common.Think;
 import net.rowf.gaunt.world.behavior.Holography;
 import net.rowf.gaunt.world.behavior.Standard;
 import net.rowf.gaunt.world.behavior.movement.Velocity;
+import net.rowf.gaunt.world.components.Speed;
 import net.rowf.gaunt.world.dungeon.Dungeon;
 import net.rowf.gaunt.world.dungeon.spawns.Reuser;
 import net.rowf.gaunt.world.dungeon.spawns.Specification;
@@ -59,6 +60,7 @@ public class Main {
         Specification player = new Specification();
         player.add(new Reuser(Think.class, new Pilot(keypad)));
         player.add(new Reuser(Think.class, watcher));
+        player.add(new Reuser(Speed.class, new Speed(10)));
         Initialization initialization = new Initialization( 
                 new Criterion() {
                     @Override
