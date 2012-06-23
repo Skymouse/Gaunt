@@ -11,6 +11,9 @@ import java.util.Collections;
 import java.util.List;
 import javax.swing.JFrame;
 import net.rowf.gaunt.assets.Depot;
+import net.rowf.gaunt.assets.definitions.Dictionary;
+import net.rowf.gaunt.assets.definitions.grimoire.Grimoire;
+import net.rowf.gaunt.assets.definitions.parser.Text;
 import net.rowf.gaunt.assets.level.Level;
 import net.rowf.gaunt.assets.level.Populator;
 import net.rowf.gaunt.assets.resource.Resources;
@@ -96,9 +99,9 @@ public class Main {
 
         Depot depot = new Resources();
 
-        Sprite s = depot.retrieve(Sprite.class, "items", null);
+        Sprite  s = depot.retrieve(Sprite.class, "items", null);
         Dungeon d = new Level(depot.retrieve(Populator.class, "map01"));
-
+        Dictionary dict = new Grimoire(depot.retrieve(Text.class, "hero"));
 
         
         Render r = Standard.RENDER;

@@ -5,6 +5,7 @@
 package net.rowf.gaunt.assets.definitions.parser;
 
 import java.util.Collections;
+import java.util.regex.Pattern;
 import net.rowf.gaunt.assets.Depot;
 
 /**
@@ -12,6 +13,9 @@ import net.rowf.gaunt.assets.Depot;
  * @author woeltjen
  */
 public class Preprocessor {
+    private static final Pattern INCLUDES = Pattern.compile("\\s*\\[\\s*(\\w+)\\s*\\]\\s*");
+    private static final Text    EMPTY    = new Text(Collections.<String>emptyList()); 
+    
     private Depot depot;
 
     public Preprocessor(Depot depot) {
@@ -19,15 +23,15 @@ public class Preprocessor {
     } 
     
     public boolean handles(String line) {
-        return line.startsWith("@");
+        return INCLUDES.matcher(line).matches();
     }
     
     public Iterable<String> expand(String line) {
-        if (line.startsWith("@")) {
-            Text t =  depot.retrieve(Text.class, line.substring(1).trim(), new Text(Collections.<String>emptyList()));
-            return t;
-        }
-        return Collections.singleton(line);
+        try {
+            return depot.retrieve(Text.class, INCLUDES.matcher(line).group(1), EMPTY);
+        } catch (Exception e) {
+            return EMPTY;
+        }            
     }
     
 

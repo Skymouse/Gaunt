@@ -15,6 +15,7 @@ import java.util.Iterator;
 import javax.imageio.ImageIO;
 import net.rowf.gaunt.assets.Depot;
 import net.rowf.gaunt.assets.Storage;
+import net.rowf.gaunt.assets.definitions.parser.Preprocessor;
 import net.rowf.gaunt.assets.definitions.parser.Text;
 import net.rowf.gaunt.assets.level.Architect;
 import net.rowf.gaunt.assets.level.Populator;
@@ -108,7 +109,7 @@ public class Resources extends Depot {
 
     };
     
-    private static final Storage<Text> LIBRARY = new Storage<Text>() {
+    private final Storage<Text> library = new Storage<Text>() {
 
         @Override
         public Class<Text> getStoredClass() {
@@ -147,12 +148,14 @@ public class Resources extends Depot {
                     }
 
                 };
-                return new Text(new Iterable<String>() {
+                Text t =  new Text(new Iterable<String>() {
                     @Override
                     public Iterator<String> iterator() {
                         return iterator;
                     }
                 });
+                t.setPreprocessor(new Preprocessor(Resources.this));
+                return t;
             } catch (IOException e) {
                 
             }
@@ -166,6 +169,7 @@ public class Resources extends Depot {
 
     public Resources() {
         super(Arrays.<Storage<?>>asList(SPRITES, GALLERIES, MAPS));
+        this.addStore(library);
     }
 
 }
