@@ -41,7 +41,7 @@ public class Parser implements Transcriber {
         List<String> passage = new ArrayList<String>();
         while (iterator.hasNext()) {
             String line = iterator.next().trim();
-            if (line.isEmpty()) {
+            if (line.isEmpty() && !passage.isEmpty()) {
                 dictionary.record(new Descriptor(passage, GRAMMAR));
                 passage.clear();
             } else {

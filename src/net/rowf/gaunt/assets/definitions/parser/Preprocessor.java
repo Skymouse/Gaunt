@@ -5,6 +5,7 @@
 package net.rowf.gaunt.assets.definitions.parser;
 
 import java.util.Collections;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import net.rowf.gaunt.assets.Depot;
 
@@ -27,11 +28,9 @@ public class Preprocessor {
     }
     
     public Iterable<String> expand(String line) {
-        try {
-            return depot.retrieve(Text.class, INCLUDES.matcher(line).group(1), EMPTY);
-        } catch (Exception e) {
-            return EMPTY;
-        }            
+        Matcher m = INCLUDES.matcher(line);
+        return (m.matches()) ? depot.retrieve(Text.class, m.group(1), EMPTY) :
+                    EMPTY;            
     }
     
 

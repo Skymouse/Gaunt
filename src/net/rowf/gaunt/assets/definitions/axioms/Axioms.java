@@ -108,6 +108,7 @@ public class Axioms implements Transcriber {
         }
         public Parameterized(C component, boolean o) {
             super((Class<C>) component.getClass(), o);
+            this.component = component;
         }
         @Override
         public C create(T parameter) {

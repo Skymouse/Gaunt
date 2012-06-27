@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import net.rowf.gaunt.assets.Depot;
+import net.rowf.gaunt.assets.definitions.Dictionary;
+import net.rowf.gaunt.assets.definitions.grimoire.Grimoire;
+import net.rowf.gaunt.assets.definitions.parser.Text;
 import net.rowf.gaunt.assets.level.Convertor;
 import net.rowf.gaunt.assets.level.Index;
-import net.rowf.gaunt.assets.level.catalog.categories.Category;
-import net.rowf.gaunt.assets.level.catalog.categories.Creatures;
-import net.rowf.gaunt.assets.level.catalog.categories.Floors;
-import net.rowf.gaunt.assets.level.catalog.categories.Walls;
+import net.rowf.gaunt.assets.level.catalog.categories.*;
 import net.rowf.gaunt.assets.level.catalog.categories.creatures.Baseline;
 import net.rowf.gaunt.assets.level.catalog.categories.creatures.prototype.Undead;
 import net.rowf.gaunt.engine.renderer.*;
@@ -28,16 +28,20 @@ import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Prototype;
 import net.rowf.gaunt.world.behavior.Common.Render;
+import net.rowf.gaunt.world.dungeon.spawns.Specification;
 
 /**
  *
  * @author woeltjen
  */
 public class Compendium {
-    private Depot depot;
+    private Depot      depot;
+    private Dictionary dictionary;
 
     public Compendium(Depot depot) {
         this.depot = depot;
+        this.dictionary = 
+                new Grimoire(depot.retrieve(Text.class, "grimoire", Text.EMPTY));
     }
 
     public Catalog<Prototype> getCatalog() {
@@ -66,6 +70,14 @@ public class Compendium {
         return new Catalog(categories, NONENTITY, 256);
     }
 
+    private Category makeCreatures(String name) {
+        Gallery sprites = depot.retrieve(Gallery.class, name);
+        Text    index   = depot.retrieve(Text.class,    name);
+        //TODO: May need to distinguish index from text (name collisions)
+        
+        Convertor<Index, Specification> convertor = new Numerology(index, dictionary);
+        return new Creatures(new Specification(), makeHologramSet(sprites), convertor);
+    }
 
     private Convertor<Index, Sprite> makeTileset (final Animation anim) {
         return new Convertor<Index, Sprite>() {

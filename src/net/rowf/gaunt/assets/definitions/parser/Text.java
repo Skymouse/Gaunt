@@ -4,6 +4,7 @@
  */
 package net.rowf.gaunt.assets.definitions.parser;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -12,8 +13,10 @@ import java.util.Stack;
  * @author woeltjen
  */
 public class Text implements Iterable<String> {
-    private Preprocessor       preprocessor = null;
-    private Iterable<String>   lines;
+    public static final Text EMPTY = new Text(Collections.<String>emptyList());
+    
+    private Preprocessor     preprocessor = null;
+    private Iterable<String> lines;
     
     public Text(Iterable<String> lines) {
         this.lines = lines;

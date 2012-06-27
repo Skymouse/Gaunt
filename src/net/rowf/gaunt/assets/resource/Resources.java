@@ -6,20 +6,14 @@
 package net.rowf.gaunt.assets.resource;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Iterator;
 import javax.imageio.ImageIO;
 import net.rowf.gaunt.assets.Depot;
 import net.rowf.gaunt.assets.Storage;
-import net.rowf.gaunt.assets.definitions.parser.Preprocessor;
-import net.rowf.gaunt.assets.definitions.parser.Text;
 import net.rowf.gaunt.assets.level.Architect;
 import net.rowf.gaunt.assets.level.Populator;
 import net.rowf.gaunt.assets.level.catalog.Compendium;
+import net.rowf.gaunt.assets.level.catalog.categories.Numerology;
 import net.rowf.gaunt.assets.level.swing.Map;
 import net.rowf.gaunt.engine.renderer.Gallery;
 import net.rowf.gaunt.engine.renderer.Sprite;
@@ -108,68 +102,11 @@ public class Resources extends Depot {
         }
 
     };
-    
-    private final Storage<Text> library = new Storage<Text>() {
-
-        @Override
-        public Class<Text> getStoredClass() {
-            return Text.class;
-        }
-
-        @Override
-        public Text retrieve(String key) {
-            InputStream i = Resources.class.getResourceAsStream("definitions/" + key + ".definition");
-            if (i == null) return null;
-            InputStreamReader reader = new InputStreamReader(i);
-            final BufferedReader buffer = new BufferedReader(reader);
-            try {
-                final Iterator<String> iterator = new Iterator<String>() {
-                    private String line = buffer.readLine();
-
-                    @Override
-                    public boolean hasNext() {                   
-                        return line != null;
-                    }
-
-                    @Override
-                    public String next() {
-                        try {
-                            String l = line;
-                            line = buffer.readLine();
-                            return l;
-                        } catch (IOException e) {
-                            return null;
-                        }
-                    }
-
-                    @Override
-                    public void remove() {
-                        throw new UnsupportedOperationException("Not supported yet.");
-                    }
-
-                };
-                Text t =  new Text(new Iterable<String>() {
-                    @Override
-                    public Iterator<String> iterator() {
-                        return iterator;
-                    }
-                });
-                t.setPreprocessor(new Preprocessor(Resources.this));
-                return t;
-            } catch (IOException e) {
-                
-            }
-            
-            return null;
-        }
-
-
         
-    } ;
-
     public Resources() {
         super(Arrays.<Storage<?>>asList(SPRITES, GALLERIES, MAPS));
-        this.addStore(library);
+        this.addStore(new Library("definitions", "definition", this));
+        this.addStore(new Library("index",       "index",      this));
     }
 
 }

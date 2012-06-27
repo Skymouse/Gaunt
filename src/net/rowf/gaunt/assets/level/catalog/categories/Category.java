@@ -15,9 +15,9 @@ import net.rowf.gaunt.world.Prototype;
  */
 public abstract class Category implements Convertor<Index, Prototype> {
     
-    private static final Index SIZE = new Index(16);
+    private static final Index MAXIMUM = new Index(15);
 
     public Index maximum() {
-        return SIZE;
+        return MAXIMUM;
     }
 }

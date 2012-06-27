@@ -16,17 +16,21 @@ import net.rowf.gaunt.world.dungeon.spawns.Specifier;
  * @author woeltjen
  */
 public class Dictionary {
+    private static final Specification UNSPECIFIED = new Specification();
+
     private Map<String, Qualifier>     qualifiers     = new HashMap<String, Qualifier>();
     private Map<String, Specification> specifications = new HashMap<String, Specification>();
     private Map<String, Class<? extends Component>> classes =
             new HashMap<String, Class<? extends Component>>();
     
     public Specification getSpecification(String name) {
-        return specifications.get(name);
+        return specifications.containsKey(name) ? 
+               specifications.get(name) : UNSPECIFIED;
     }
     
     public Specification getSpecification(String name, final String parameter) {
-        return qualifiers.get(name).getSpecification(parameter);
+        return qualifiers.containsKey(name) ? 
+               qualifiers.get(name).getSpecification(parameter) : UNSPECIFIED;
     }
         
     public <T> void recordQuality(String name, Quality<T> quality, Decoder<T> parser) {

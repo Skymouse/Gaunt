@@ -26,7 +26,7 @@ public class Descriptor {
                 Matcher m = pair.getLeft().matcher(element);
                 if (m.matches()) {
                     List<String> parameters = new ArrayList<String>();
-                    for (int i = 1; i < m.groupCount(); i++)
+                    for (int i = 1; i <= m.groupCount(); i++) 
                         parameters.add(m.group(i));
                     pair.getRight().interpret(this, parameters);
                 }
