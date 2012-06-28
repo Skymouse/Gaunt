@@ -12,6 +12,7 @@ import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Prototype;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.behavior.Common.Think;
+import net.rowf.gaunt.world.components.Size;
 
 /**
  *
@@ -36,8 +37,8 @@ public class Spawn extends Prototype {
             Entity   spawn = prototype.spawn();
 
             for (Boundary location : e.get(Boundary.class)) {
-                for (Boundary b : spawn.first(Boundary.class))
-                    location = b.add(location.getMinimum());
+                for (Size sz : spawn.first(Size.class))
+                    location = location.resize(sz.get());
                 spawn.set(Boundary.class, location);
             }
 

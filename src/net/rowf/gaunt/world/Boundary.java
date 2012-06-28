@@ -5,8 +5,6 @@
 
 package net.rowf.gaunt.world;
 
-import net.rowf.gaunt.world.components.Parameterizable;
-
 /**
  *
  * @author woeltjen
@@ -23,6 +21,11 @@ public class Boundary implements Component {
     public Boundary (float width, float height) {
         minimum = new Vector(0.5f-width/2, 0.5f-height/2);
         maximum = new Vector(0.5f+width/2, 0.5f+height/2);
+    }
+    
+    public Boundary (float size, Vector center) {
+        minimum = new Vector(center.getX()-size/2, center.getY()-size/2);
+        maximum = new Vector(center.getX()+size/2, center.getY()+size/2);
     }
 
     public Boundary (Vector min, Vector max) {
@@ -62,5 +65,13 @@ public class Boundary implements Component {
         if (Math.abs(x) < Math.abs(y)) return new Vector(x, 0);
         if (Math.abs(x) > Math.abs(y)) return new Vector(0, y);        
         return new Vector(x, y);
+    }
+    
+    public Boundary resize(float size) {
+        return new Boundary(size, center());
+    }
+    
+    public Vector center() {
+        return getMinimum().add(getMaximum()).scale(0.5f);
     }
 }

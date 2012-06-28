@@ -15,12 +15,13 @@ import net.rowf.gaunt.world.behavior.Common.Render;
  *
  * @author woeltjen
  */
-public class Paint implements Render {
+public class Paint extends Painter implements Render {
 
     public void invoke(Entity e, View view) {
         for (Boundary boundary : e.get(Boundary.class))
             for (Sprite sprite : e.get(Sprite.class))
-                view.draw(sprite, boundary);
+                paint(sprite, boundary, view);
     }
 
+    
 }

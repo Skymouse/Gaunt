@@ -10,6 +10,7 @@ import net.rowf.gaunt.assets.definitions.Dictionary;
 import net.rowf.gaunt.assets.definitions.Dictionary.Decoder;
 import net.rowf.gaunt.assets.definitions.Quality;
 import net.rowf.gaunt.assets.definitions.parser.Transcriber;
+import net.rowf.gaunt.world.Boundary;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Facing;
 import net.rowf.gaunt.world.Replicant;

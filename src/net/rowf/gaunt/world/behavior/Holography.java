@@ -17,15 +17,15 @@ import net.rowf.gaunt.world.behavior.Common.Render;
  *
  * @author woeltjen
  */
-public class Holography implements Render {
+public class Holography extends Painter implements Render {
 
     public void invoke(Entity e, View view) {
         for (Boundary b : e.get(Boundary.class))
             for (Hologram holo : e.get(Hologram.class))
                 for (Facing f : e.get(Facing.class))
                     for (World w : e.first(World.class))
-                        view.draw(holo.getAnimation(f.getAngle())
-                                      .getSprite(w.getTicks() / 4), b);
+                        paint(holo.getAnimation(f.getAngle())
+                                      .getSprite(w.getTicks() / 4), b, view);
     }
 
 }

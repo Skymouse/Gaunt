@@ -4,29 +4,24 @@
  */
 package net.rowf.gaunt.world.components;
 
-import net.rowf.gaunt.world.Boundary;
-import net.rowf.gaunt.world.Vector;
-
 /**
  *
  * @author woeltjen
  */
-public class Size extends Boundary implements Parameterizable<Float> {
+public class Size implements Parameterizable<Float> {
     private float size;
     
-    public Size(float size) {
-        this(size, new Vector(0.5f, 0.5f));
+    public Size (float size) {
+        this.size = size;
     }
     
-    private Size(float size, Vector center) {
-        super(center.add(new Vector(-size/2, -size/2)), 
-              center.add(new Vector( size/2,  size/2)));
-        this.size = size;
+    public float get() {
+        return size;
     }
     
     @Override
     public void set(Float parameter) {
-        this.size = parameter;
+        size = parameter;
     }
 
     @Override
@@ -38,11 +33,5 @@ public class Size extends Boundary implements Parameterizable<Float> {
     public Parameterizable<Float> replicate() {
         return new Size(size);
     }
-
-    @Override
-    public Boundary add(Vector p) {
-        return new Size(size, getMinimum().add(p.add(new Vector(size/2, size/2))));
-    }
- 
     
 }
