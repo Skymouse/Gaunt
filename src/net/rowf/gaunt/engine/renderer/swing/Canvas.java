@@ -27,7 +27,8 @@ public class Canvas extends JPanel implements View, Camera {
     private int             visible = 0;
     
     private Camera          camera = this;
-    private Vector        origin = new Vector(0,0);
+    private Vector          origin = new Vector(0,0);
+    private float           scale  = 1.0f;
     
     public Canvas() {
         buffer[0] = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
@@ -47,19 +48,19 @@ public class Canvas extends JPanel implements View, Camera {
     public Boundary getVisibleBoundary() {
         float width  = ((float) getWidth ()) / WORLD_TO_PIXEL;
         float height = ((float) getHeight()) / WORLD_TO_PIXEL;
-        return camera.getVisibleBoundary(width, height);
+        return camera.getVisibleBoundary(width / scale, height / scale);
     }
     
     public Boundary getVisibleBoundary(float width, float height) {
-        return new Boundary(new Vector(0,0), new Vector(width,height));
+        return new Boundary(new Vector(0,0), new Vector(width*scale,height*scale));
     }
 
     public void draw(BufferedImage i, Boundary b) {
         b = b.add(origin.scale(-1));
-        int x = (int) (b.getMinimum().getX() * WORLD_TO_PIXEL);
-        int y = (int) (b.getMinimum().getY() * WORLD_TO_PIXEL);
-        int w = (int) (b.getMaximum().getX() * WORLD_TO_PIXEL) - x;
-        int h = (int) (b.getMaximum().getY() * WORLD_TO_PIXEL) - y;
+        int x = (int) (b.getMinimum().getX() * WORLD_TO_PIXEL * scale);
+        int y = (int) (b.getMinimum().getY() * WORLD_TO_PIXEL * scale);
+        int w = (int) (b.getMaximum().getX() * WORLD_TO_PIXEL * scale) - x;
+        int h = (int) (b.getMaximum().getY() * WORLD_TO_PIXEL * scale) - y;
         getDrawingBuffer().drawImage(i, x, y, w, h, this);
     }
 
@@ -76,8 +77,8 @@ public class Canvas extends JPanel implements View, Camera {
             buffer[1^visible] = new BufferedImage(getWidth(), getHeight(),
                     BufferedImage.TYPE_INT_RGB);
         }
-        origin = camera.getVisibleBoundary(pixelToWorld(getWidth ()), 
-                                           pixelToWorld(getHeight()))
+        origin = camera.getVisibleBoundary(pixelToWorld(getWidth ()) / scale, 
+                                           pixelToWorld(getHeight()) / scale)
                        .getMinimum();
     }
 
