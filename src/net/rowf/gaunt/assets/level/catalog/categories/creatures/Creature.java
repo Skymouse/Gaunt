@@ -6,7 +6,6 @@ package net.rowf.gaunt.assets.level.catalog.categories.creatures;
 
 import net.rowf.gaunt.world.*;
 import net.rowf.gaunt.world.behavior.Standard;
-import net.rowf.gaunt.world.components.Speed;
 
 /**
  *

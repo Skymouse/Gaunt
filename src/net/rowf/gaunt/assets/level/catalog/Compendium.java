@@ -18,8 +18,6 @@ import net.rowf.gaunt.assets.definitions.parser.Text;
 import net.rowf.gaunt.assets.level.Convertor;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.assets.level.catalog.categories.*;
-import net.rowf.gaunt.assets.level.catalog.categories.creatures.Baseline;
-import net.rowf.gaunt.assets.level.catalog.categories.creatures.prototype.Undead;
 import net.rowf.gaunt.engine.renderer.*;
 import net.rowf.gaunt.engine.renderer.Sprite.Drawable;
 import net.rowf.gaunt.engine.renderer.swing.Canvas;
@@ -41,7 +39,7 @@ public class Compendium {
     public Compendium(Depot depot) {
         this.depot = depot;
         this.dictionary = 
-                new Grimoire(depot.retrieve(Text.class, "grimoire", Text.EMPTY));
+                new Grimoire(depot.retrieve(Text.class, "hero", Text.EMPTY));
     }
 
     public Catalog<Prototype> getCatalog() {
@@ -54,7 +52,7 @@ public class Compendium {
         categories.add(new Walls  (makeTileset(new Row(tiles, 1)))); // 16
         categories.add(new Walls  (makeTileset(new Row(tiles, 2)))); // 32
         categories.add(new Walls  (makeTileset(new Row(tiles, 3)))); // 48
-        categories.add(new Creatures(new Undead(), makeHologramSet(sprites), new Baseline() ));
+        categories.add(makeCreatures("00"));
         categories.add(new Numbers());
 
         /*Original:
