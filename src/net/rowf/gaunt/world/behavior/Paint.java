@@ -17,10 +17,10 @@ import net.rowf.gaunt.world.behavior.Common.Render;
  */
 public class Paint extends Painter implements Render {
 
-    public void invoke(Entity e, View view) {
-        for (Boundary boundary : e.get(Boundary.class))
-            for (Sprite sprite : e.get(Sprite.class))
-                paint(sprite, boundary, view);
+    @Override
+    public void paint(Entity e, Boundary boundary, View view) {
+        for (Sprite sprite : e.get(Sprite.class))
+            paint(sprite, boundary, view);
     }
 
     

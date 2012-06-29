@@ -16,8 +16,9 @@ import net.rowf.gaunt.assets.definitions.grimoire.Grimoire;
 import net.rowf.gaunt.assets.definitions.parser.Text;
 import net.rowf.gaunt.assets.level.Level;
 import net.rowf.gaunt.assets.level.Populator;
+import net.rowf.gaunt.assets.level.catalog.Compendium;
 import net.rowf.gaunt.assets.resource.Resources;
-import net.rowf.gaunt.engine.Engine;
+import net.rowf.gaunt.editor.cartographer.Cartographer;
 import net.rowf.gaunt.engine.Module;
 import net.rowf.gaunt.engine.initializer.Criterion;
 import net.rowf.gaunt.engine.initializer.Initialization;
@@ -54,7 +55,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame  frame   = new JFrame("Gaunt's Dungeon");
+
         Canvas  canvas  = new Canvas();
         Arrows  keypad  = new Arrows(KeyEvent.VK_UP  , KeyEvent.VK_DOWN,
                                      KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
@@ -78,9 +79,14 @@ public class Main {
                 true
         );
         
+        
+        Depot depot = new Resources();
+        
+        JFrame  frame   = new JFrame("Gaunt's Dungeon");    
         frame.setSize(640, 480);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(canvas);
+        //frame.getContentPane().add(canvas);
+        frame.getContentPane().add(new Cartographer(new Compendium(depot).getCatalog()));
         frame.setVisible(true);
 
         frame.addKeyListener(keypad);
@@ -96,8 +102,6 @@ public class Main {
         modules.add(new Ticker(30.0));
         modules.add(new Thinker());
         modules.add(new Initializer(Collections.singleton(initialization)));
-
-        Depot depot = new Resources();
 
         Sprite  s = depot.retrieve(Sprite.class, "items", null);
         Dungeon d = new Level(depot.retrieve(Populator.class, "map01"));
@@ -116,8 +120,8 @@ public class Main {
         w.addEntity(d.spawn());
         w.addEntity(e);
 
-        Engine engine = new Engine(w, modules);
-        engine.run();
+        //Engine engine = new Engine(w, modules);
+        //engine.run();
     }
 
 }

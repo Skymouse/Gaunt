@@ -19,13 +19,13 @@ import net.rowf.gaunt.world.behavior.Common.Render;
  */
 public class Holography extends Painter implements Render {
 
-    public void invoke(Entity e, View view) {
-        for (Boundary b : e.get(Boundary.class))
-            for (Hologram holo : e.get(Hologram.class))
-                for (Facing f : e.get(Facing.class))
-                    for (World w : e.first(World.class))
-                        paint(holo.getAnimation(f.getAngle())
-                                      .getSprite(w.getTicks() / 4), b, view);
+    @Override
+    public void paint(Entity e, Boundary b, View view) {
+        for (Hologram holo : e.get(Hologram.class))
+            for (Facing f : e.get(Facing.class))
+                for (World w : e.first(World.class))
+                    paint(holo.getAnimation(f.getAngle())
+                                    .getSprite(w.getTicks() / 4), b, view);
     }
 
 }

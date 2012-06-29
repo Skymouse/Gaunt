@@ -29,6 +29,7 @@ public class Wall extends Prototype {
     }
 
     public Wall(Sprite sprite, int hardness) {
+        this(sprite);
         components.add(new Hardness(hardness));
         components.add(DEMOLISH);
     }

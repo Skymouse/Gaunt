@@ -28,7 +28,7 @@ public class Canvas extends JPanel implements View, Camera {
     
     private Camera          camera = this;
     private Vector          origin = new Vector(0,0);
-    private float           scale  = 1.0f;
+    private float           scale  = 0.25f;
     
     public Canvas() {
         buffer[0] = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
@@ -92,6 +92,14 @@ public class Canvas extends JPanel implements View, Camera {
 
     public void setCamera(Camera camera) {
         this.camera = camera;
+    }
+    
+    public void setScale(float scale) {
+        this.scale = scale;
+    }
+    
+    public float getScale() {
+        return scale;
     }
     
     private float pixelToWorld (int pixels) {
