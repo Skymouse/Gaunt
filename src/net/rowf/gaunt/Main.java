@@ -18,6 +18,7 @@ import net.rowf.gaunt.assets.level.Level;
 import net.rowf.gaunt.assets.level.Populator;
 import net.rowf.gaunt.assets.level.catalog.Compendium;
 import net.rowf.gaunt.assets.resource.Resources;
+import net.rowf.gaunt.editor.cartographer.Architect;
 import net.rowf.gaunt.editor.cartographer.Cartographer;
 import net.rowf.gaunt.engine.Module;
 import net.rowf.gaunt.engine.initializer.Criterion;
@@ -80,13 +81,15 @@ public class Main {
         );
         
         
-        Depot depot = new Resources();
-        
+        Depot        depot        = new Resources();
+        Cartographer cartographer = new Cartographer(new Architect(60,60),
+                                                     new Compendium(depot).getCatalog());
+                
         JFrame  frame   = new JFrame("Gaunt's Dungeon");    
         frame.setSize(640, 480);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.getContentPane().add(canvas);
-        frame.getContentPane().add(new Cartographer(new Compendium(depot).getCatalog()));
+        frame.getContentPane().add(cartographer);
         frame.setVisible(true);
 
         frame.addKeyListener(keypad);

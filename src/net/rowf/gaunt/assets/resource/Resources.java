@@ -10,7 +10,7 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 import net.rowf.gaunt.assets.Depot;
 import net.rowf.gaunt.assets.Storage;
-import net.rowf.gaunt.assets.level.Architect;
+import net.rowf.gaunt.assets.level.Carpenter;
 import net.rowf.gaunt.assets.level.Populator;
 import net.rowf.gaunt.assets.level.catalog.Compendium;
 import net.rowf.gaunt.assets.level.catalog.categories.Numerology;
@@ -97,7 +97,7 @@ public class Resources extends Depot {
 
         @Override
         public Populator retrieve(String key) {
-            return new Architect(new Map(getImage(key)),
+            return new Carpenter(new Map(getImage(key)),
                     new Compendium(new Resources()).getCatalog());
         }
 

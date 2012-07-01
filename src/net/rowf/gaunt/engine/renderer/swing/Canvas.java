@@ -28,7 +28,7 @@ public class Canvas extends JPanel implements View, Camera {
     
     private Camera          camera = this;
     private Vector          origin = new Vector(0,0);
-    private float           scale  = 0.25f;
+    private float           scale  = 1.0f;
     
     public Canvas() {
         buffer[0] = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
@@ -70,11 +70,13 @@ public class Canvas extends JPanel implements View, Camera {
         getDrawingBuffer().clearRect(0, 0, getWidth(), getHeight());
     }
 
-    public synchronized void swap() {
+    public synchronized void swap() {        
         visible = 1 ^ visible;
         if (getWidth () != buffer[1^visible].getWidth () ||
             getHeight() != buffer[1^visible].getHeight()) {
-            buffer[1^visible] = new BufferedImage(getWidth(), getHeight(),
+            buffer[1^visible] = new BufferedImage(
+                    Math.max(getWidth (), 1), 
+                    Math.max(getHeight(), 1),
                     BufferedImage.TYPE_INT_RGB);
         }
         origin = camera.getVisibleBoundary(pixelToWorld(getWidth ()) / scale, 
@@ -100,6 +102,12 @@ public class Canvas extends JPanel implements View, Camera {
     
     public float getScale() {
         return scale;
+    }
+    
+    public Vector toWorld(int x, int y) {
+        float u = ((float) x) / (WORLD_TO_PIXEL * scale);
+        float v = ((float) y) / (WORLD_TO_PIXEL * scale);        
+        return new Vector(u , v).add(origin);
     }
     
     private float pixelToWorld (int pixels) {

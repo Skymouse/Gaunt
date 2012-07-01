@@ -12,12 +12,12 @@ import net.rowf.gaunt.world.Prototype;
  *
  * @author woeltjen
  */
-public class Architect<T> implements Populator {
+public class Carpenter<T> implements Populator {
 
     private Convertor<Coordinate, T> plan;
     private Convertor<T, Prototype>  palette;
 
-    public Architect (Convertor<Coordinate, T> plan,
+    public Carpenter (Convertor<Coordinate, T> plan,
                       Convertor<T, Prototype>  palette) {
         this.plan    = plan;
         this.palette = palette;

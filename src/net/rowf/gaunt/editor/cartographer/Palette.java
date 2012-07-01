@@ -63,6 +63,14 @@ public class Palette extends JPanel {
         
     }
     
+    public int getPrimary() {
+        return primary;
+    }
+    
+    public int getSecondary() {
+        return secondary;
+    }
+    
     private void pickFrom(int category) {
         bottom.removeAll();
         for (int i = 0; i < 16; i++) {
@@ -113,7 +121,9 @@ public class Palette extends JPanel {
         @Override
         public void mouseClicked(MouseEvent me) {
             if      (me.getButton() == MouseEvent.BUTTON1) primary   = index;
-            else if (me.getButton() == MouseEvent.BUTTON2) secondary = index;
+            else if (me.getButton() == MouseEvent.BUTTON3) secondary = index;
+            System.out.println(primary);
+            System.out.println(secondary);
         }
 
         @Override
