@@ -30,6 +30,7 @@ public class Palette extends JPanel {
     
     private Picker[] categories = new Picker[16];
     private Picker[] choices    = new Picker[256];
+    private Entity[] examples   = new Entity[256];
     
     private JPanel top    = new JPanel();
     private JPanel bottom = new JPanel();
@@ -44,12 +45,11 @@ public class Palette extends JPanel {
         
         List<Entity> group = new ArrayList<Entity>();
         for (int i = 0; i < 256; i++) {
-            Entity e = convertor.convert(new Index(i)).spawn();
-            for (Think t : e.get(Think.class)) t.invoke(e, new World());
-            group.add(e);
-            choices[i] = new Picker(64, Arrays.asList(e));
-            choices[i].addMouseListener(new Choice(i));
-            choices[i].setBorder(BorderFactory.createLineBorder(Color.ORANGE));
+            examples[i] = spawnEntity(convertor.convert(new Index(i)));
+            choices [i] = new Picker(64, Arrays.asList(examples[i]));
+            choices [i].addMouseListener(new Choice(i));
+            choices [i].setBorder(BorderFactory.createLineBorder(Color.ORANGE));
+            group.add(examples[i]);
             
             if (group.size() == 16) {               
                 categories[i >> 4] = new Picker(64, group);
@@ -69,6 +69,19 @@ public class Palette extends JPanel {
     
     public int getSecondary() {
         return secondary;
+    }
+
+    public Entity getExample(int index) {
+        return examples[index];
+    }
+
+    private Entity spawnEntity(Prototype p) {
+        World w = new World();
+        Entity e = p.spawn();
+        for (Think  t       : e.get(Think.class)) t.invoke(e, w);
+        w.tick(1);
+        for (Entity spawned : w.getEntities()   ) e = spawned;
+        return e;
     }
     
     private void pickFrom(int category) {

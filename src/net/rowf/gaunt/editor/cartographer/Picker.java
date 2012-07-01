@@ -7,7 +7,7 @@ package net.rowf.gaunt.editor.cartographer;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Collection;
-import net.rowf.gaunt.engine.renderer.View;
+import java.util.List;
 import net.rowf.gaunt.engine.renderer.swing.Canvas;
 import net.rowf.gaunt.world.Boundary;
 import net.rowf.gaunt.world.Entity;
@@ -19,10 +19,10 @@ import net.rowf.gaunt.world.behavior.Painter;
  * @author woeltjen
  */
 public class Picker extends Canvas {
-    private Collection<Entity> entities;
-    private float              scale;
+    private List<Entity> entities;
+    private float        scale;
     
-    public Picker (float pixels, Collection<Entity> entities) {
+    public Picker (float pixels, List<Entity> entities) {
         this.scale    = pixels / Canvas.WORLD_TO_PIXEL;
         this.entities = entities;
         setPreferredSize(new Dimension ((int) pixels, (int) pixels));
@@ -34,9 +34,8 @@ public class Picker extends Canvas {
         render(entities);
         super.paint(g);
     }
-    
 
-    private void render (Collection<Entity> entities) {
+    private void render (List<Entity> entities) {
         int rescale = (int) Math.ceil(Math.sqrt(entities.size()));
         super.setScale(scale / (int) rescale);
         
