@@ -20,9 +20,11 @@ import net.rowf.gaunt.engine.logic.Thinker;
 import net.rowf.gaunt.engine.renderer.Renderer;
 import net.rowf.gaunt.engine.renderer.swing.Canvas;
 import net.rowf.gaunt.engine.timing.Ticker;
+import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Prototype;
 import net.rowf.gaunt.world.Vector;
 import net.rowf.gaunt.world.World;
+import net.rowf.gaunt.world.dungeon.Dungeon;
 
 /**
  *
@@ -37,6 +39,8 @@ public class Cartographer extends JPanel {
     
     private Canvas  canvas;
     private Palette palette;
+
+    private Entity  dungeon;
     
     public Cartographer(Architect architect, Convertor<Index, Prototype> convertor) {
         this.architect = architect;
@@ -63,7 +67,7 @@ public class Cartographer extends JPanel {
     public void populate() {
         //TODO: Listeners!
         World w = new World();
-        w.addEntity(new Level(architect.getPopulator(convertor)).spawn());
+        w.addEntity(dungeon = new Level(architect.getPopulator(convertor)).spawn());
         
         Engine old = engine.get();
         if (old != null) old.halt();
@@ -85,8 +89,11 @@ public class Cartographer extends JPanel {
         @Override
         public void mouseClicked(MouseEvent me) {
             Vector v = canvas.toWorld(me.getX(), me.getY());
-            architect.set((int) v.getX(), (int) v.getY(), 16);//palette.getPrimary());
-            populate();
+            architect.set((int) v.getX(), (int) v.getY(), palette.getPrimary());
+            Prototype p = convertor.convert(new Index(palette.getPrimary()));
+            for (Dungeon d : dungeon.first(Dungeon.class))
+                d.setEntity((int) v.getX(), (int) v.getY(), p.spawn());
+            //populate();
         }
 
         @Override

@@ -107,7 +107,7 @@ public class Dungeon extends Prototype implements Component { //TODO: Implements
 
         @Override
         public void invoke(Entity e, World world) {       
-            e.remove(this);
+            //e.remove(this);
             for (Dungeon d : e.get(Dungeon.class))
                 for (int x = 0; x < d.width; x++)
                     for (int y = 0; y < d.height; y++)
