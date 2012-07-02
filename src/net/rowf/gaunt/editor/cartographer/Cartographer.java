@@ -65,6 +65,7 @@ public class Cartographer extends JPanel {
         cursor = new Cursor(mouse.getPosition());
         canvas.addMouseListener(listener);
         canvas.addMouseMotionListener(mouse);
+        canvas.setScale(0.5f);
 
         simulator.start();
         
@@ -102,7 +103,10 @@ public class Cartographer extends JPanel {
         @Override
         public void mouseClicked(MouseEvent me) {
             Vector v = canvas.toWorld(me.getX(), me.getY());
-            Boundary clear = new Boundary(v, v.add(new Vector(0.5f, 0.5f)));
+            Vector midpoint = new Vector((float) Math.floor(v.getX()),
+                                         (float) Math.floor(v.getY()))
+                                         .add(new Vector(0.5f,0.5f));
+            Boundary clear = new Boundary(0.5f, midpoint);
             architect.set((int) v.getX(), (int) v.getY(), palette.getPrimary());
             Prototype p = convertor.convert(new Index(palette.getPrimary()));
             for (World w : dungeon.first(World.class))

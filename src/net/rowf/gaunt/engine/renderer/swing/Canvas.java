@@ -52,7 +52,7 @@ public class Canvas extends JPanel implements View, Camera {
     }
     
     public Boundary getVisibleBoundary(float width, float height) {
-        return new Boundary(new Vector(0,0), new Vector(width*scale,height*scale));
+        return new Boundary(new Vector(0,0), new Vector(width, height));
     }
 
     public void draw(BufferedImage i, Boundary b) {
