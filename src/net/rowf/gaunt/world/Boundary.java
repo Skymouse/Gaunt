@@ -74,4 +74,8 @@ public class Boundary implements Component {
     public Vector center() {
         return getMinimum().add(getMaximum()).scale(0.5f);
     }
+    
+    public Boundary recenter(Vector center) {
+        return add(center.add(center().scale(-1f)));
+    }
 }

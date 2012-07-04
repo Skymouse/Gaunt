@@ -39,7 +39,7 @@ public class Compendium {
     public Compendium(Depot depot) {
         this.depot = depot;
         this.dictionary = 
-                new Grimoire(depot.retrieve(Text.class, "hero", Text.EMPTY));
+                new Grimoire(depot.retrieve(Text.class, "grimoire", Text.EMPTY));
     }
 
     public Catalog<Prototype> getCatalog() {
@@ -52,7 +52,9 @@ public class Compendium {
         categories.add(new Walls  (makeTileset(new Row(tiles, 1)))); // 16
         categories.add(new Walls  (makeTileset(new Row(tiles, 2)))); // 32
         categories.add(new Walls  (makeTileset(new Row(tiles, 3)))); // 48
-        categories.add(makeCreatures("00"));
+        categories.add(makeCreatures("00")); //64 creatures
+        categories.add(makeCreatures("00")); //80 pickups
+        categories.add(makeZones("zones"));  //96 spwans
         categories.add(new Numbers());
 
         /*Original:
@@ -67,7 +69,30 @@ public class Compendium {
         
         return new Catalog(categories, NONENTITY, 256);
     }
+    
+    public Catalog<Prototype> getHeroes() {
+        return new Catalog(
+                Collections.singletonList(makeHeroes("heroes")), 
+                NONENTITY, 
+                4);
+    }
+    
+    private Category makeZones(String name) {
+        Text index = depot.retrieve(Text.class, name);
+        Convertor<Index, Specification> convertor = new Numerology(index, dictionary);
+        return new Zones(new Specification(), convertor);
+    }
 
+    
+    private Category makeHeroes(String name) {
+        Gallery sprites = depot.retrieve(Gallery.class, name);
+        Text    index   = depot.retrieve(Text.class,    name);
+        //TODO: May need to distinguish index from text (name collisions)
+        
+        Convertor<Index, Specification> convertor = new Numerology(index, dictionary);
+        return new Heroes(new Specification(), makeHologramSet(sprites), convertor);        
+    }
+    
     private Category makeCreatures(String name) {
         Gallery sprites = depot.retrieve(Gallery.class, name);
         Text    index   = depot.retrieve(Text.class,    name);
@@ -76,7 +101,7 @@ public class Compendium {
         Convertor<Index, Specification> convertor = new Numerology(index, dictionary);
         return new Creatures(new Specification(), makeHologramSet(sprites), convertor);
     }
-
+    
     private Convertor<Index, Sprite> makeTileset (final Animation anim) {
         return new Convertor<Index, Sprite>() {
             @Override

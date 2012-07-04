@@ -15,7 +15,7 @@ import net.rowf.gaunt.assets.level.Populator;
  *
  * @author woeltjen
  */
-public class Architect<T> implements Matrix, Convertor<Coordinate, Index> {
+public class Architect<T> implements Convertor<Coordinate, Index> {
     private BufferedImage image;
     
     public Architect(int width, int height) {

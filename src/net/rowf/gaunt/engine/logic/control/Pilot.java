@@ -36,7 +36,7 @@ public class Pilot extends Controller {
             }
         }
         float speed = 0;
-        if (i.magnitude() > 0)
+        if (i.magnitude() > 0) // TODO: Move out of controls!
             for (Speed s : e.get(Speed.class))
                 speed = Math.max(speed, s.get());
         e.set(Propulsion.class, new Propulsion(speed / 100f));

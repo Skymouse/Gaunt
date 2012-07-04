@@ -10,16 +10,17 @@ import net.rowf.gaunt.assets.definitions.Dictionary;
 import net.rowf.gaunt.assets.definitions.Dictionary.Decoder;
 import net.rowf.gaunt.assets.definitions.Quality;
 import net.rowf.gaunt.assets.definitions.parser.Transcriber;
-import net.rowf.gaunt.world.Boundary;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Facing;
 import net.rowf.gaunt.world.Replicant;
+import net.rowf.gaunt.world.adventurer.Playable;
 import net.rowf.gaunt.world.behavior.Standard;
 import net.rowf.gaunt.world.components.*;
 import net.rowf.gaunt.world.dungeon.spawns.Replicator;
 import net.rowf.gaunt.world.dungeon.spawns.Reuser;
 import net.rowf.gaunt.world.dungeon.spawns.Specification;
 import net.rowf.gaunt.world.dungeon.spawns.Specifier;
+import net.rowf.gaunt.world.dungeon.zone.Start;
 
 /**
  *
@@ -31,6 +32,8 @@ public class Axioms implements Transcriber {
             new Axiom   (Standard.HOLOGRAPHY),
             new Axiom   (Standard.IMPACT),
             new Axiom   (Standard.RENDER),
+            new Axiom   (new Playable()),
+            new Axiom   (new Start()),
             new Axiom   (new Facing(0)),
             new Scored  (new Strength(0)),
             new Scored  (new Speed(0)),
