@@ -10,7 +10,7 @@ import net.rowf.gaunt.engine.renderer.View;
 import net.rowf.gaunt.world.*;
 import net.rowf.gaunt.world.behavior.Common.Collide;
 import net.rowf.gaunt.world.behavior.Common.Render;
-import net.rowf.gaunt.world.behavior.Common.Think;
+import net.rowf.gaunt.world.behavior.Common.Task;
 
 
 /**
@@ -103,7 +103,7 @@ public class Dungeon extends Prototype implements Component { //TODO: Implements
         }
     };
     
-    private static final Think THINK = new Think() {
+    private static final Task THINK = new Task() {
 
         @Override
         public void invoke(Entity e, World world) {       
@@ -111,7 +111,7 @@ public class Dungeon extends Prototype implements Component { //TODO: Implements
             for (Dungeon d : e.get(Dungeon.class))
                 for (int x = 0; x < d.width; x++)
                     for (int y = 0; y < d.height; y++)
-                        for (Think t : (e=d.getEntity(x, y)).get(Think.class) )
+                        for (Task t : (e=d.getEntity(x, y)).get(Task.class) )
                             t.invoke(e, world);                        
         }
         

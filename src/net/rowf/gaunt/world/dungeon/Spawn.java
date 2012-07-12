@@ -11,7 +11,7 @@ import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Prototype;
 import net.rowf.gaunt.world.World;
-import net.rowf.gaunt.world.behavior.Common.Think;
+import net.rowf.gaunt.world.behavior.Common.Task;
 import net.rowf.gaunt.world.components.Size;
 
 /**
@@ -30,7 +30,7 @@ public class Spawn extends Prototype {
         return new Entity(Arrays.<Component>asList(new Generator()));
     }
 
-    private class Generator implements Think {
+    private class Generator implements Task {
 
         @Override
         public void invoke(Entity e, World w) {

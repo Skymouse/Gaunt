@@ -18,7 +18,7 @@ import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Prototype;
 import net.rowf.gaunt.world.World;
-import net.rowf.gaunt.world.behavior.Common.Think;
+import net.rowf.gaunt.world.behavior.Common.Task;
 
 /**
  *
@@ -78,7 +78,7 @@ public class Palette extends JPanel {
     private Entity spawnEntity(Prototype p) {
         World w = new World();
         Entity e = p.spawn();
-        for (Think  t       : e.get(Think.class)) t.invoke(e, w);
+        for (Task  t       : e.get(Task.class)) t.invoke(e, w);
         w.tick(1);
         for (Entity spawned : w.getEntities()   ) e = spawned;
         return e;

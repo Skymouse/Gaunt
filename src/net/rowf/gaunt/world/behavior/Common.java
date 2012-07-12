@@ -16,7 +16,7 @@ import net.rowf.gaunt.world.World;
  */
 public class Common {
     public static interface Render  extends Behavior<View>   {}
-    public static interface Think   extends Behavior<World>  {}
+    public static interface Task   extends Behavior<World>  {}
     public static interface Move    extends Behavior<World>  {}
     public static interface Collide extends Behavior<Entity> {}
     public static interface Impact  extends Behavior<Entity> {}

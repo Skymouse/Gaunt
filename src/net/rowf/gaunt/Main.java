@@ -6,14 +6,12 @@
 package net.rowf.gaunt;
 
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import net.rowf.gaunt.assets.Depot;
-import net.rowf.gaunt.assets.definitions.Dictionary;
-import net.rowf.gaunt.assets.definitions.grimoire.Grimoire;
-import net.rowf.gaunt.assets.definitions.parser.Text;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.assets.level.Level;
 import net.rowf.gaunt.assets.level.Populator;
@@ -22,30 +20,15 @@ import net.rowf.gaunt.assets.level.catalog.Compendium;
 import net.rowf.gaunt.assets.resource.Resources;
 import net.rowf.gaunt.editor.cartographer.Architect;
 import net.rowf.gaunt.editor.cartographer.Cartographer;
-import net.rowf.gaunt.engine.Engine;
-import net.rowf.gaunt.engine.Module;
-import net.rowf.gaunt.engine.initializer.*;
-import net.rowf.gaunt.engine.logic.Thinker;
 import net.rowf.gaunt.engine.logic.control.Pilot;
 import net.rowf.gaunt.engine.logic.control.swing.Arrows;
-import net.rowf.gaunt.engine.physics.Collider;
-import net.rowf.gaunt.engine.physics.Physics;
-import net.rowf.gaunt.engine.renderer.Renderer;
-import net.rowf.gaunt.engine.renderer.Sprite;
 import net.rowf.gaunt.engine.renderer.Watcher;
 import net.rowf.gaunt.engine.renderer.swing.Canvas;
-import net.rowf.gaunt.engine.timing.Ticker;
+import net.rowf.gaunt.game.Round;
 import net.rowf.gaunt.world.*;
-import net.rowf.gaunt.world.adventurer.Playable;
-import net.rowf.gaunt.world.behavior.Common.Move;
-import net.rowf.gaunt.world.behavior.Common.Render;
-import net.rowf.gaunt.world.behavior.Common.Think;
-import net.rowf.gaunt.world.behavior.Standard;
-import net.rowf.gaunt.world.behavior.movement.Velocity;
-import net.rowf.gaunt.world.dungeon.Dungeon;
+import net.rowf.gaunt.world.behavior.Common.Task;
 import net.rowf.gaunt.world.dungeon.spawns.Reuser;
 import net.rowf.gaunt.world.dungeon.spawns.Specification;
-import net.rowf.gaunt.world.dungeon.zone.Start;
 
 /**
  *
@@ -64,80 +47,37 @@ public class Main {
         Watcher watcher = new Watcher();
         
         Specification player = new Specification();
-        player.add(new Reuser(Think.class, new Pilot(keypad)));
-        player.add(new Reuser(Think.class, watcher));
-        Preparation preparation = new Preparation( 
-                new Criterion() {
-                    @Override
-                    public boolean consider(Entity e) {
-                        return !e.get(Playable.class).isEmpty();
-                    }
-                },
-                player,
-                true
-        );
-
+        player.add(new Reuser(Task.class, new Pilot(keypad)));
+        player.add(new Reuser(Task.class, watcher));
         
         Depot        depot        = new Resources();
         Compendium   compendium   = new Compendium(depot);
         Catalog      catalog      = compendium.getCatalog();
         Cartographer cartographer = new Cartographer(new Architect(60,60),
                                                      catalog);
+        Round game = new Round(
+                player.apply(compendium.getHeroes().convert(new Index(0))),
+                canvas,
+                Arrays.<Prototype>asList(new Level(depot.retrieve(Populator.class, "map01")))
+                );
 
-        Initialization initialization = new Injector ( 
-            new Criterion() {
-                @Override
-                public boolean consider(Entity e) {
-                    if (e.get(Start.class).isEmpty()) return false;
-                    else return true;
-                    //return !e.get(Start.class).isEmpty();
-                }                    
-            },
-            player.apply(compendium.getHeroes().convert(new Index(0))),
-            true
-        );
         
         JFrame  frame   = new JFrame("Gaunt's Dungeon");    
         frame.setSize(640, 480);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(canvas);
         //frame.getContentPane().add(cartographer);
+//        JMenu menu = new JMenu("MENU");
+//        menu.add(new JMenuItem("test"));
+//        frame.setJMenuBar(new JMenuBar());
+//        frame.getJMenuBar().add(menu);
         frame.setVisible(true);
 
         frame.addKeyListener(keypad);
         canvas.setCamera(watcher);
         canvas.setScale(2.0f);
 
-        
-        World w = new World();
-
-        List<Module> modules = new ArrayList<Module>();
-        modules.add(new Renderer(canvas));
-        modules.add(new Physics());
-        modules.add(new Collider());
-        modules.add(new Ticker(30.0));
-        modules.add(new Thinker());
-        modules.add(new Initializer(Arrays.asList(initialization)));
-
-        Sprite  s = depot.retrieve(Sprite.class, "items", null);
-        Dungeon d = new Level(depot.retrieve(Populator.class, "map01"));
-        Dictionary dict = new Grimoire(depot.retrieve(Text.class, "hero"));
-
-        
-        Render r = Standard.RENDER;
-        Move   m = new Velocity(new Vector(0.1f,0.1f));
-
-        Entity e = new Entity();
-        e.add(s);
-        e.add(new Boundary( 1, 1));
-        e.add(r);
-        e.add(m);
-
-        w.addEntity(d.spawn());
-        w.addEntity(e);
-
-        Engine engine = new Engine(w, modules);
-        engine.run();
+        game.begin();
     }
 
 }

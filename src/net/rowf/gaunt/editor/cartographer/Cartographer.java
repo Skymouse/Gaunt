@@ -16,7 +16,7 @@ import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.assets.level.Level;
 import net.rowf.gaunt.engine.Engine;
 import net.rowf.gaunt.engine.Module;
-import net.rowf.gaunt.engine.logic.Thinker;
+import net.rowf.gaunt.engine.logic.Taskmaster;
 import net.rowf.gaunt.engine.logic.control.swing.Mouse;
 import net.rowf.gaunt.engine.renderer.Renderer;
 import net.rowf.gaunt.engine.renderer.swing.Canvas;
@@ -52,7 +52,7 @@ public class Cartographer extends JPanel {
         this.palette   = new Palette(convertor);
 
         modules.add(new Renderer(canvas));
-        modules.add(new Thinker());
+        modules.add(new Taskmaster());
         modules.add(new Ticker(30.0f));
         modules.add(updater);
         

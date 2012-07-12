@@ -8,13 +8,13 @@ import net.rowf.gaunt.world.Boundary;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Vector;
 import net.rowf.gaunt.world.World;
-import net.rowf.gaunt.world.behavior.Common.Think;
+import net.rowf.gaunt.world.behavior.Common.Task;
 
 /**
  *
  * @author woeltjen
  */
-public class Watcher implements Camera, Think {
+public class Watcher implements Camera, Task {
     private Boundary extents;
     private Entity   entity;
 

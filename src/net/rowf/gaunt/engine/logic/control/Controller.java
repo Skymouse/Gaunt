@@ -6,13 +6,13 @@ package net.rowf.gaunt.engine.logic.control;
 
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.World;
-import net.rowf.gaunt.world.behavior.Common.Think;
+import net.rowf.gaunt.world.behavior.Common.Task;
 
 /**
  *
  * @author woeltjen
  */
-public abstract class Controller implements Think {
+public abstract class Controller implements Task {
     private Input input;
     private int   next = 0;
     
