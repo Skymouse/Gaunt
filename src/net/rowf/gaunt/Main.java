@@ -65,8 +65,8 @@ public class Main {
         JFrame  frame   = new JFrame("Gaunt's Dungeon");    
         frame.setSize(640, 480);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(canvas);
-        //frame.getContentPane().add(cartographer);
+        //frame.getContentPane().add(canvas);
+        frame.getContentPane().add(cartographer);
 //        JMenu menu = new JMenu("MENU");
 //        menu.add(new JMenuItem("test"));
 //        frame.setJMenuBar(new JMenuBar());
@@ -77,7 +77,7 @@ public class Main {
         canvas.setCamera(watcher);
         canvas.setScale(2.0f);
 
-        game.begin();
+        //game.begin();
     }
 
 }

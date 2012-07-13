@@ -25,4 +25,13 @@ public interface Brush {
     public static final Render NONE = new Render() {
         public void invoke(Entity e, View argument) {}
     };
+    
+    public static final Brush EMPTY = new Brush() {
+        @Override public void advance (Vector v) {}
+        @Override public void begin   (Vector v) {}
+        @Override public void conclude(Vector v) {}
+        @Override public void prepare (Vector v) {}
+        
+        @Override public Render getRepresentation() { return NONE; }
+    };
 }

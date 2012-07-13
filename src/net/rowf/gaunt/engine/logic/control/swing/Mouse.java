@@ -99,6 +99,11 @@ public class Mouse extends MouseAdapter implements MouseMotionListener, Input {
     }
 
     @Override
+    public void mouseDragged(MouseEvent e) {
+        mouseMoved(e);
+    }
+
+    @Override
     public void mouseMoved(MouseEvent e) {
         Vector v = (e.getSource() instanceof Canvas) ?
                    ((Canvas) e.getSource()).toWorld(e.getX(), e.getY()) :

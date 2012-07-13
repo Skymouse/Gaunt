@@ -4,9 +4,10 @@
  */
 package net.rowf.gaunt.editor.cartographer;
 
+import net.rowf.gaunt.editor.cartographer.stylus.Cursor;
 import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicReference;
@@ -14,6 +15,10 @@ import javax.swing.JPanel;
 import net.rowf.gaunt.assets.level.Convertor;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.assets.level.Level;
+import net.rowf.gaunt.editor.cartographer.brush.Brush;
+import net.rowf.gaunt.editor.cartographer.brush.Ink;
+import net.rowf.gaunt.editor.cartographer.brush.Marker;
+import net.rowf.gaunt.editor.cartographer.brush.Placer;
 import net.rowf.gaunt.engine.Engine;
 import net.rowf.gaunt.engine.Module;
 import net.rowf.gaunt.engine.logic.Taskmaster;
@@ -21,12 +26,10 @@ import net.rowf.gaunt.engine.logic.control.swing.Mouse;
 import net.rowf.gaunt.engine.renderer.Renderer;
 import net.rowf.gaunt.engine.renderer.swing.Canvas;
 import net.rowf.gaunt.engine.timing.Ticker;
-import net.rowf.gaunt.world.Boundary;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Prototype;
 import net.rowf.gaunt.world.Vector;
 import net.rowf.gaunt.world.World;
-import net.rowf.gaunt.world.dungeon.Dungeon;
 
 /**
  *
@@ -44,6 +47,7 @@ public class Cartographer extends JPanel {
 
     private Entity  dungeon;
     private Cursor  cursor;
+    private Brush   brush;
     
     public Cartographer(Architect architect, Convertor<Index, Prototype> convertor) {
         this.architect = architect;
@@ -53,7 +57,7 @@ public class Cartographer extends JPanel {
 
         modules.add(new Renderer(canvas));
         modules.add(new Taskmaster());
-        modules.add(new Ticker(30.0f));
+        modules.add(new Ticker(100.0f));
         modules.add(updater);
         
         setLayout(new BorderLayout());
@@ -62,14 +66,23 @@ public class Cartographer extends JPanel {
         add(palette, BorderLayout.SOUTH);
         
         Mouse mouse = new Mouse();
-        cursor = new Cursor(mouse.getPosition());
-        canvas.addMouseListener(listener);
+        cursor = new Cursor(mouse);
+        canvas.addMouseListener(mouse);        
         canvas.addMouseMotionListener(mouse);
         canvas.setScale(0.5f);
 
         simulator.start();
+       
         
         populate();
+        
+        Ink ink = new Placer(architect, convertor, dungeon, new Index(0) {
+            @Override
+            public int get() {
+                return palette.getPrimary();
+            }            
+        });
+        cursor.setBrush(new Marker(ink,3.0f));//Marker(ink, 5));
     }
     
     public void populate() {
@@ -98,42 +111,30 @@ public class Cartographer extends JPanel {
         }
     };
     
-    private final MouseListener listener = new MouseListener() {
-
-        @Override
-        public void mouseClicked(MouseEvent me) {
-            Vector v = canvas.toWorld(me.getX(), me.getY());
-            Vector midpoint = new Vector((float) Math.floor(v.getX()),
-                                         (float) Math.floor(v.getY()))
-                                         .add(new Vector(0.5f,0.5f));
-            Boundary clear = new Boundary(0.5f, midpoint);
-            architect.set((int) v.getX(), (int) v.getY(), palette.getPrimary());
-            Prototype p = convertor.convert(new Index(palette.getPrimary()));
-            for (World w : dungeon.first(World.class))
-                for (Entity e : w.getEntities())
-                    if (e != dungeon && e.get(Cursor.class).isEmpty())
-                        for (Boundary b : e.get(Boundary.class))
-                            if (b.overlaps(clear))
-                                w.removeEntity(e);
-            for (Dungeon d : dungeon.first(Dungeon.class))
-                d.setEntity((int) v.getX(), (int) v.getY(), p.spawn());
-            //populate();
+    private class Adapter extends MouseAdapter {
+        private Vector convert(MouseEvent me) {
+            return canvas.toWorld(me.getX(), me.getY());
         }
 
         @Override
-        public void mouseEntered(MouseEvent me) {
+        public void mouseDragged(MouseEvent e) {
+            brush.advance(convert(e));
         }
 
         @Override
-        public void mouseExited(MouseEvent me) {
+        public void mouseMoved(MouseEvent e) {
+            brush.prepare(convert(e));        
+        }
+
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            brush.begin(convert(e));
         }
 
         @Override
-        public void mousePressed(MouseEvent me) {
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent me) {
+        public void mouseReleased(MouseEvent e) {
+            brush.conclude(convert(e));
         }
         
     };

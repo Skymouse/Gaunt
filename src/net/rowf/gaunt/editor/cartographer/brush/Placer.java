@@ -7,7 +7,7 @@ package net.rowf.gaunt.editor.cartographer.brush;
 import net.rowf.gaunt.assets.level.Convertor;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.editor.cartographer.Architect;
-import net.rowf.gaunt.editor.cartographer.Cursor;
+import net.rowf.gaunt.editor.cartographer.stylus.Cursor;
 import net.rowf.gaunt.world.*;
 import net.rowf.gaunt.world.dungeon.Dungeon;
 
@@ -15,7 +15,7 @@ import net.rowf.gaunt.world.dungeon.Dungeon;
  *
  * @author woeltjen
  */
-public class Placer {
+public class Placer implements Ink {
     private Architect architect;
     private Convertor<Index, Prototype> convertor;
     private Entity dungeon;
@@ -28,7 +28,7 @@ public class Placer {
         this.index     = index;
     }
            
-    public void place(Vector v) {
+    public void apply(Vector v) {
         Vector midpoint = new Vector((float) Math.floor(v.getX()),
                                          (float) Math.floor(v.getY()))
                                          .add(new Vector(0.5f,0.5f));
