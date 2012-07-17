@@ -15,6 +15,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import net.rowf.gaunt.assets.level.Convertor;
 import net.rowf.gaunt.assets.level.Index;
+import net.rowf.gaunt.assets.level.Provider;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Prototype;
 import net.rowf.gaunt.world.World;
@@ -24,7 +25,7 @@ import net.rowf.gaunt.world.behavior.Common.Task;
  *
  * @author woeltjen
  */
-public class Palette extends JPanel {
+public class Palette extends JPanel implements Provider<Index> {
     private int primary   = 1;
     private int secondary = 0;
     
@@ -61,6 +62,10 @@ public class Palette extends JPanel {
         
         pickFrom(0);
         
+    }
+    
+    public Index get() {
+        return new Index(primary);
     }
     
     public int getPrimary() {

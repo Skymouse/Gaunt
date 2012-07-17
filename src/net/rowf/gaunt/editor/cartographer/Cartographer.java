@@ -15,9 +15,10 @@ import javax.swing.JPanel;
 import net.rowf.gaunt.assets.level.Convertor;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.assets.level.Level;
+import net.rowf.gaunt.assets.level.Provider;
+import net.rowf.gaunt.editor.cartographer.Toolbox.Selection;
 import net.rowf.gaunt.editor.cartographer.brush.Brush;
 import net.rowf.gaunt.editor.cartographer.brush.Ink;
-import net.rowf.gaunt.editor.cartographer.brush.Marker;
 import net.rowf.gaunt.editor.cartographer.brush.Placer;
 import net.rowf.gaunt.engine.Engine;
 import net.rowf.gaunt.engine.Module;
@@ -35,13 +36,14 @@ import net.rowf.gaunt.world.World;
  *
  * @author woeltjen
  */
-public class Cartographer extends JPanel {
+public class Cartographer extends JPanel implements Provider<Ink> {
     private Collection<Module>      modules = new ArrayList<Module>();    
     private AtomicReference<Engine> engine  = new AtomicReference<Engine>();
     
     private Architect architect;    
     private Convertor<Index, Prototype> convertor;
     
+    private Toolbox toolbox;
     private Canvas  canvas;
     private Palette palette;
 
@@ -49,21 +51,25 @@ public class Cartographer extends JPanel {
     private Cursor  cursor;
     private Brush   brush;
     
+    private Ink     ink;
+    
+    
     public Cartographer(Architect architect, Convertor<Index, Prototype> convertor) {
         this.architect = architect;
-        this.convertor = convertor;
+        this.convertor = convertor;        
         this.canvas    = new Canvas();
         this.palette   = new Palette(convertor);
-
+        this.toolbox   = new Toolbox(this);
+        
         modules.add(new Renderer(canvas));
         modules.add(new Taskmaster());
         modules.add(new Ticker(100.0f));
         modules.add(updater);
         
         setLayout(new BorderLayout());
-        //add(tools,   BorderLayout.NORTH);
-        add(canvas, BorderLayout.CENTER);
-        add(palette, BorderLayout.SOUTH);
+        add(toolbox,   BorderLayout.NORTH);
+        add(canvas,    BorderLayout.CENTER);
+        add(palette,   BorderLayout.SOUTH);
         
         Mouse mouse = new Mouse();
         cursor = new Cursor(mouse);
@@ -76,14 +82,21 @@ public class Cartographer extends JPanel {
         
         populate();
         
-        Ink ink = new Placer(architect, convertor, dungeon, new Index(0) {
+        this.ink = new Placer(architect, convertor, dungeon, palette);
+        toolbox.addListener(new Selection() {
             @Override
-            public int get() {
-                return palette.getPrimary();
+            public void select(Brush b) {                
+                cursor.setBrush(b);//Marker(ink, 5));
             }            
         });
-        cursor.setBrush(new Marker(ink,3.0f));//Marker(ink, 5));
     }
+
+    @Override
+    public Ink get() {
+        return ink;
+    }
+    
+    
     
     public void populate() {
         //TODO: Listeners!
