@@ -15,6 +15,7 @@ import net.rowf.gaunt.editor.cartographer.brush.Brush;
 import net.rowf.gaunt.editor.cartographer.brush.Ink;
 import net.rowf.gaunt.editor.cartographer.brush.Marker;
 import net.rowf.gaunt.editor.cartographer.brush.Pencil;
+import net.rowf.gaunt.editor.cartographer.tools.Actionable;
 import net.rowf.gaunt.editor.cartographer.tools.Parameter;
 import net.rowf.gaunt.editor.cartographer.tools.Scalar;
 
@@ -51,7 +52,13 @@ public class Toolbox extends JPanel {
     }
     
     private void addOption(String name, Tool<?> tool) {
-        add(new Toggle(name, tool));
+        JPanel option = new JPanel();
+        option.setLayout(new BoxLayout(option, BoxLayout.Y_AXIS));
+        option.add(new Toggle(name, tool));
+        Provider provider = tool.getProvider();
+        if (provider instanceof JComponent) option.add((JComponent) provider);
+        if (provider instanceof Actionable) ((Actionable)provider).addActionListener(selector);
+        add(option);
     }
     
     private void select(Brush b) {
@@ -67,6 +74,7 @@ public class Toolbox extends JPanel {
         public Tool(Provider<T> provider) {
             this.provider = provider;
         }
+        private Provider<T> getProvider() { return provider; }
         public Brush getBrush() { return getBrush(provider.get()); }
         public abstract Brush getBrush(T parameter);
     }

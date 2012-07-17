@@ -70,12 +70,14 @@ public class Cartographer extends JPanel implements Provider<Ink> {
         add(toolbox,   BorderLayout.NORTH);
         add(canvas,    BorderLayout.CENTER);
         add(palette,   BorderLayout.SOUTH);
+        add(new Zoomer(canvas), BorderLayout.WEST);
+             
         
         Mouse mouse = new Mouse();
         cursor = new Cursor(mouse);
         canvas.addMouseListener(mouse);        
         canvas.addMouseMotionListener(mouse);
-        canvas.setScale(0.5f);
+        canvas.setScale(1f);
 
         simulator.start();
        

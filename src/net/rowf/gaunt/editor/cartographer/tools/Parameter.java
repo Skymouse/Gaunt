@@ -5,14 +5,14 @@
 package net.rowf.gaunt.editor.cartographer.tools;
 
 import java.awt.event.ActionListener;
-import javax.swing.JComponent;
+import javax.swing.JPanel;
 import net.rowf.gaunt.assets.level.Provider;
 
 /**
  *
  * @author woeltjen
  */
-public abstract class Parameter<T> extends JComponent implements Actionable, Provider<T> {
+public abstract class Parameter<T> extends JPanel implements Actionable, Provider<T> {
     public static final Parameter<Object> NONE = new Parameter<Object>() {
 
         @Override
