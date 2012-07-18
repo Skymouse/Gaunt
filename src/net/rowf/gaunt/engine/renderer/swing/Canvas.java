@@ -110,6 +110,10 @@ public class Canvas extends JPanel implements View, Camera {
         return new Vector(u , v).add(origin);
     }
     
+    public Vector fromWorld(Vector vec) {
+        return vec.add(origin.scale(-1f)).scale(WORLD_TO_PIXEL * scale);
+    }
+    
     private float pixelToWorld (int pixels) {
         return ((float) pixels) / WORLD_TO_PIXEL;
     }

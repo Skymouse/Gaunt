@@ -11,10 +11,8 @@ import java.util.Enumeration;
 import java.util.List;
 import javax.swing.*;
 import net.rowf.gaunt.assets.level.Provider;
-import net.rowf.gaunt.editor.cartographer.brush.Brush;
-import net.rowf.gaunt.editor.cartographer.brush.Ink;
-import net.rowf.gaunt.editor.cartographer.brush.Marker;
-import net.rowf.gaunt.editor.cartographer.brush.Pencil;
+import net.rowf.gaunt.editor.cartographer.brush.Box;
+import net.rowf.gaunt.editor.cartographer.brush.*;
 import net.rowf.gaunt.editor.cartographer.tools.Actionable;
 import net.rowf.gaunt.editor.cartographer.tools.Parameter;
 import net.rowf.gaunt.editor.cartographer.tools.Scalar;
@@ -36,6 +34,24 @@ public class Toolbox extends JPanel {
             @Override
             public Brush getBrush(Object parameter) {
                 return new Pencil(inkwell.get());
+            }            
+        });
+        addOption("line", new Tool<Object>(Parameter.NONE) { 
+            @Override
+            public Brush getBrush(Object parameter) {
+                return new Line(inkwell.get());
+            }            
+        });
+        addOption("box", new Tool<Object>(Parameter.NONE) { 
+            @Override
+            public Brush getBrush(Object parameter) {
+                return new Box(inkwell.get());
+            }            
+        });
+        addOption("fill", new Tool<Object>(Parameter.NONE) { 
+            @Override
+            public Brush getBrush(Object parameter) {
+                return new Fill(inkwell.get());
             }            
         });
         addOption("marker", new Tool<Float>(new Scalar()) { 

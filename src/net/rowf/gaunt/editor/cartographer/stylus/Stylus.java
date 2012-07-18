@@ -8,9 +8,11 @@ import net.rowf.gaunt.editor.cartographer.brush.Brush;
 import net.rowf.gaunt.engine.logic.control.Controller;
 import net.rowf.gaunt.engine.logic.control.Input;
 import net.rowf.gaunt.engine.logic.control.swing.Mouse;
+import net.rowf.gaunt.engine.renderer.View;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Vector;
 import net.rowf.gaunt.world.World;
+import net.rowf.gaunt.world.behavior.Common.Render;
 
 /**
  *
@@ -53,4 +55,14 @@ public class Stylus extends Controller {
         pressed = p;
     }
     
+    public Render getRepresentation() {
+        return new Render() {
+
+            @Override
+            public void invoke(Entity e, View argument) {
+                brush.getRepresentation().invoke(e, argument);
+            }
+            
+        };
+    }
 }

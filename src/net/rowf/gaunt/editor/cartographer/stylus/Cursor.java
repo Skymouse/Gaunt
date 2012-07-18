@@ -47,7 +47,7 @@ public class Cursor extends Prototype implements Component {
 
     @Override
     public Entity spawn() {
-        return new Entity(Arrays.asList(locator, render, stylus, this));
+        return new Entity(Arrays.asList(locator, render, stylus, stylus.getRepresentation(), this));
     }
 
     private final Component render = new Render() {

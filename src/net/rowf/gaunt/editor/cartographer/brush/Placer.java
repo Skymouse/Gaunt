@@ -32,9 +32,9 @@ public class Placer implements Ink {
     public void apply(Vector v) {
         Index index = indexer.get();
         Vector midpoint = new Vector((float) Math.floor(v.getX()),
-                                         (float) Math.floor(v.getY()))
+                                     (float) Math.floor(v.getY()))
                                          .add(new Vector(0.5f,0.5f));
-        Boundary clear = new Boundary(0.5f, midpoint);
+        Boundary clear = new Boundary(0.25f, midpoint);
         architect.set((int) v.getX(), (int) v.getY(), index.get());
         for (World w : dungeon.first(World.class))
             for (Entity e : w.getEntities())
