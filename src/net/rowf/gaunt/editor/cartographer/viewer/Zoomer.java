@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.rowf.gaunt.editor.cartographer;
+package net.rowf.gaunt.editor.cartographer.viewer;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JSlider;

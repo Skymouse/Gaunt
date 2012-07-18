@@ -4,6 +4,7 @@
  */
 package net.rowf.gaunt.editor.cartographer;
 
+import net.rowf.gaunt.editor.cartographer.viewer.Zoomer;
 import net.rowf.gaunt.editor.cartographer.stylus.Cursor;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
@@ -68,9 +69,10 @@ public class Cartographer extends JPanel implements Provider<Ink> {
         
         setLayout(new BorderLayout());
         add(toolbox,   BorderLayout.NORTH);
-        add(canvas,    BorderLayout.CENTER);
+        //add(canvas,    BorderLayout.CENTER);
+        add(new Viewer(canvas), BorderLayout.CENTER);
         add(palette,   BorderLayout.SOUTH);
-        add(new Zoomer(canvas), BorderLayout.WEST);
+        //add(new Zoomer(canvas), BorderLayout.WEST);
              
         
         Mouse mouse = new Mouse();
