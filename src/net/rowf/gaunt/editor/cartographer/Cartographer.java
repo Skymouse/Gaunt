@@ -4,7 +4,6 @@
  */
 package net.rowf.gaunt.editor.cartographer;
 
-import net.rowf.gaunt.editor.cartographer.viewer.Zoomer;
 import net.rowf.gaunt.editor.cartographer.stylus.Cursor;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
@@ -21,6 +20,7 @@ import net.rowf.gaunt.editor.cartographer.Toolbox.Selection;
 import net.rowf.gaunt.editor.cartographer.brush.Brush;
 import net.rowf.gaunt.editor.cartographer.brush.Ink;
 import net.rowf.gaunt.editor.cartographer.brush.Placer;
+import net.rowf.gaunt.editor.cartographer.menu.Mapper;
 import net.rowf.gaunt.engine.Engine;
 import net.rowf.gaunt.engine.Module;
 import net.rowf.gaunt.engine.logic.Taskmaster;
@@ -60,7 +60,7 @@ public class Cartographer extends JPanel implements Provider<Ink> {
         this.convertor = convertor;        
         this.canvas    = new Canvas();
         this.palette   = new Palette(convertor);
-        this.toolbox   = new Toolbox(this);
+        this.toolbox   = new Toolbox(this, new Mapper(this));
         
         modules.add(new Renderer(canvas));
         modules.add(new Taskmaster());
@@ -100,7 +100,14 @@ public class Cartographer extends JPanel implements Provider<Ink> {
         return ink;
     }
     
+    public Architect getArchitect() {
+        return architect;
+    }
     
+    public void setArchitect(Architect architect) {
+        this.architect = architect;
+        populate();
+    }
     
     public void populate() {
         //TODO: Listeners!

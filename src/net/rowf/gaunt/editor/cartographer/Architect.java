@@ -18,6 +18,10 @@ import net.rowf.gaunt.assets.level.Populator;
 public class Architect<T> implements Convertor<Coordinate, Index> {
     private BufferedImage image;
     
+    public Architect(BufferedImage image) {
+        this.image   = image;
+    }
+    
     public Architect(int width, int height) {
         this.image   = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
     }
@@ -25,13 +29,17 @@ public class Architect<T> implements Convertor<Coordinate, Index> {
     public void set(int x, int y, int index) {
         if (x >= 0 && y >= 0 && x < image.getWidth() && y < image.getHeight()) {
             int i = index & 0xFF;
-            //i = (i << 0) | (i << 8) | (i << 16);
-            image.setRGB(x, y, i);
+            image.getRaster().setPixel(x, y, new int[]{i});
         }
     }
     
     public int get(int x, int y) {
-        return image.getRGB(x, y) & 0xFF;
+        int pix[] = { 0 };
+        return image.getRaster().getPixel(x, y, pix)[0];
+    }
+    
+    public BufferedImage getImage() {
+        return image;
     }
 
     @Override
