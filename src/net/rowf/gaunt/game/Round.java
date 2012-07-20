@@ -8,6 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 import net.rowf.gaunt.engine.Engine;
 import net.rowf.gaunt.engine.Module;
+import net.rowf.gaunt.engine.initializer.Initialization;
+import net.rowf.gaunt.engine.initializer.Initializer;
+import net.rowf.gaunt.engine.initializer.Injector;
+import net.rowf.gaunt.engine.initializer.criteria.Has;
 import net.rowf.gaunt.engine.logic.Taskmaster;
 import net.rowf.gaunt.engine.physics.Collider;
 import net.rowf.gaunt.engine.physics.Physics;
@@ -19,6 +23,7 @@ import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Prototype;
 import net.rowf.gaunt.world.World;
+import net.rowf.gaunt.world.dungeon.zone.Start;
 
 /**
  *
@@ -29,7 +34,7 @@ public class Round implements Game {
     
     public Round(Prototype player, View view, List<Prototype> initial) {
         //Initialization initialization = 
-                //new Injector(new Has(Start.class), player, true);
+        //        new Injector(new Has(Start.class), player, true);
         World world = new World();        
         world.addEntity(new Entity(Arrays.<Component>asList(new Starter(player, initial))));
         
@@ -39,7 +44,7 @@ public class Round implements Game {
                     new Renderer(view),
                     new Physics(),
                     new Collider(),
-                    new Ticker(30.0),
+                    new Ticker(60.0),
                     new Taskmaster()
                     //new Initializer(Arrays.asList(initialization))
                 )

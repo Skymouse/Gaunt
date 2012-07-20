@@ -52,9 +52,8 @@ public class Main {
         
         Depot        depot        = new Resources();
         Compendium   compendium   = new Compendium(depot);
-        Catalog      catalog      = compendium.getCatalog();
         Cartographer cartographer = new Cartographer(new Architect(60,60),
-                                                     catalog);
+                                                     compendium);
         Round game = new Round(
                 player.apply(compendium.getHeroes().convert(new Index(0))),
                 canvas,

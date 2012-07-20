@@ -18,8 +18,10 @@ public class Popup extends JPopupMenu {
 
     public Popup(Cartography cartography) {
         this.cartography = cartography;
-        add (new Option("Open", new Load(this)));
-        add (new Option("Save", new Save(this)));
+        add (new Option("New",  new Create (this)));
+        add (new Option("Open", new Load   (this)));
+        add (new Option("Save", new Save   (this)));
+        add (new Option("Run",  new Execute(this)));
     }
     
     private class Option extends JMenuItem implements ActionListener {

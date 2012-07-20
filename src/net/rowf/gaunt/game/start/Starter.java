@@ -34,11 +34,6 @@ public class Starter implements Task {
     
     @Override
     public void invoke(Entity e, World world) {
-        if (System.currentTimeMillis() > next) {
-            started = false;
-            next = System.currentTimeMillis() + 2500;
-        }
-        
         if  (started) return;
         else started = true;
         

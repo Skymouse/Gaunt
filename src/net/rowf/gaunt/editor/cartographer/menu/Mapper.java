@@ -5,9 +5,16 @@
 package net.rowf.gaunt.editor.cartographer.menu;
 
 import java.io.File;
+import java.util.Arrays;
 import javax.imageio.ImageIO;
+import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.editor.cartographer.Architect;
 import net.rowf.gaunt.editor.cartographer.Cartographer;
+import net.rowf.gaunt.engine.renderer.View;
+import net.rowf.gaunt.game.Game;
+import net.rowf.gaunt.game.Round;
+import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.dungeon.spawns.Specification;
 
 /**
  *
@@ -26,8 +33,15 @@ public class Mapper implements Cartography {
     }
 
     @Override
-    public void execute() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void execute(View view, Specification player) {
+        Prototype p = player.apply(cartographer.getCompendium().getHeroes().convert(new Index(0)));
+        Prototype l = cartographer.getLevel();
+        final Game game = new Round(p, view, Arrays.asList(l));
+        new Thread() {            
+            public void run() {
+                game.begin();
+            }
+        }.start();
     }
 
     @Override

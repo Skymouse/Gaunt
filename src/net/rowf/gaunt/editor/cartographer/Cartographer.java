@@ -16,6 +16,7 @@ import net.rowf.gaunt.assets.level.Convertor;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.assets.level.Level;
 import net.rowf.gaunt.assets.level.Provider;
+import net.rowf.gaunt.assets.level.catalog.Compendium;
 import net.rowf.gaunt.editor.cartographer.Toolbox.Selection;
 import net.rowf.gaunt.editor.cartographer.brush.Brush;
 import net.rowf.gaunt.editor.cartographer.brush.Ink;
@@ -43,6 +44,7 @@ public class Cartographer extends JPanel implements Provider<Ink> {
     
     private Architect architect;    
     private Convertor<Index, Prototype> convertor;
+    private Compendium                  compendium;
     
     private Toolbox toolbox;
     private Canvas  canvas;
@@ -55,9 +57,10 @@ public class Cartographer extends JPanel implements Provider<Ink> {
     private Ink     ink;
     
     
-    public Cartographer(Architect architect, Convertor<Index, Prototype> convertor) {
+    public Cartographer(Architect architect, Compendium compendium) {
         this.architect = architect;
-        this.convertor = convertor;        
+        this.compendium= compendium;
+        this.convertor = compendium.getCatalog();        
         this.canvas    = new Canvas();
         this.palette   = new Palette(convertor);
         this.toolbox   = new Toolbox(this, new Mapper(this));
@@ -109,10 +112,18 @@ public class Cartographer extends JPanel implements Provider<Ink> {
         populate();
     }
     
+    public Compendium getCompendium() {
+        return compendium;
+    }
+    
+    public Prototype getLevel() {
+        return new Level(architect.getPopulator(convertor));
+    }
+    
     public void populate() {
         //TODO: Listeners!
         World w = new World();
-        w.addEntity(dungeon = new Level(architect.getPopulator(convertor)).spawn());
+        w.addEntity(dungeon = getLevel().spawn());
         w.addEntity(cursor.spawn());
         Engine old = engine.get();
         if (old != null) old.halt();
@@ -163,3 +174,5 @@ public class Cartographer extends JPanel implements Provider<Ink> {
         
     };
 }
+
+//TODO: Too long, disentangle
