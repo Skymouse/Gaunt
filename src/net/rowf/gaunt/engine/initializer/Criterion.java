@@ -4,12 +4,10 @@
  */
 package net.rowf.gaunt.engine.initializer;
 
-import net.rowf.gaunt.world.Entity;
-
 /**
  *
  * @author woeltjen
  */
-public interface Criterion {
-    public boolean consider(Entity e);
+public interface Criterion<E> {
+    public boolean consider(E e);
 }

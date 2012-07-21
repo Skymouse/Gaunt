@@ -7,7 +7,6 @@ package net.rowf.gaunt.editor.cartographer.stylus;
 
 import java.util.Arrays;
 import net.rowf.gaunt.editor.cartographer.brush.Brush;
-import net.rowf.gaunt.engine.logic.control.Input;
 import net.rowf.gaunt.engine.logic.control.Locator;
 import net.rowf.gaunt.engine.logic.control.swing.Mouse;
 import net.rowf.gaunt.engine.renderer.View;

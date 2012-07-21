@@ -75,6 +75,10 @@ public class Palette extends JPanel implements Provider<Index> {
     public int getSecondary() {
         return secondary;
     }
+    
+    public void setPrimary(int primary) {
+        this.primary = primary;
+    }
 
     public Entity getExample(int index) {
         return examples[index];

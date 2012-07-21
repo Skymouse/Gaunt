@@ -15,11 +15,11 @@ import net.rowf.gaunt.world.components.Size;
  * @author woeltjen
  */
 public class Injector implements Initialization {
-    private Criterion criterion;
+    private Criterion<Entity> criterion;
     private Prototype prototype;
     private boolean   unique;
 
-    public Injector(Criterion criterion, Prototype prototype, boolean unique) {
+    public Injector(Criterion<Entity> criterion, Prototype prototype, boolean unique) {
         this.criterion = criterion;
         this.prototype = prototype;
         this.unique    = unique;

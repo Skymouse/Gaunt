@@ -9,9 +9,11 @@ import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.swing.JPanel;
+import net.rowf.gaunt.assets.definitions.Pair;
 import net.rowf.gaunt.assets.level.Convertor;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.assets.level.Level;
@@ -19,11 +21,15 @@ import net.rowf.gaunt.assets.level.Provider;
 import net.rowf.gaunt.assets.level.catalog.Compendium;
 import net.rowf.gaunt.editor.cartographer.Toolbox.Selection;
 import net.rowf.gaunt.editor.cartographer.brush.Brush;
+import net.rowf.gaunt.editor.cartographer.brush.Dropper;
 import net.rowf.gaunt.editor.cartographer.brush.Ink;
 import net.rowf.gaunt.editor.cartographer.brush.Placer;
 import net.rowf.gaunt.editor.cartographer.menu.Mapper;
+import net.rowf.gaunt.editor.cartographer.stylus.Switch;
+import net.rowf.gaunt.editor.cartographer.viewer.Labeler;
 import net.rowf.gaunt.engine.Engine;
 import net.rowf.gaunt.engine.Module;
+import net.rowf.gaunt.engine.initializer.Criterion;
 import net.rowf.gaunt.engine.logic.Taskmaster;
 import net.rowf.gaunt.engine.logic.control.swing.Mouse;
 import net.rowf.gaunt.engine.renderer.Renderer;
@@ -67,6 +73,7 @@ public class Cartographer extends JPanel implements Provider<Ink> {
         
         modules.add(new Renderer(canvas));
         modules.add(new Taskmaster());
+        modules.add(new Labeler());
         modules.add(new Ticker(100.0f));
         modules.add(updater);
         
@@ -78,17 +85,22 @@ public class Cartographer extends JPanel implements Provider<Ink> {
         //add(new Zoomer(canvas), BorderLayout.WEST);
              
         
-        Mouse mouse = new Mouse();
+        Mouse mouse = new Mouse();        
         cursor = new Cursor(mouse);
-        canvas.addMouseListener(mouse);        
-        canvas.addMouseMotionListener(mouse);
+        Switch s = new Switch(mouse, cursor,
+                Arrays.<Pair<Criterion<MouseEvent>, Provider<Brush>>>asList( 
+                    new Pair(Switch.CTRL, new Dropper(architect, palette))
+                ),
+                toolbox);
+        canvas.addMouseListener(s);        
+        canvas.addMouseMotionListener(s);
         canvas.setScale(1f);
 
         simulator.start();
        
         
         populate();
-        
+        Provider p;
         this.ink = new Placer(architect, convertor, dungeon, palette);
         toolbox.addListener(new Selection() {
             @Override

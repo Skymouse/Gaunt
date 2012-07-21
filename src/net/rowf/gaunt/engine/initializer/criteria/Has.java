@@ -12,7 +12,7 @@ import net.rowf.gaunt.world.Entity;
  *
  * @author woeltjen
  */
-public class Has implements Criterion {
+public class Has implements Criterion<Entity> {
     private Class<? extends Component> component;
 
     public Has(Class<? extends Component> component) {

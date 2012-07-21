@@ -10,7 +10,7 @@ import net.rowf.gaunt.world.Entity;
  *
  * @author woeltjen
  */
-public interface Initialization extends Criterion {
+public interface Initialization extends Criterion<Entity> {
     public Entity initialize(Entity e);
     public boolean unique();
 }

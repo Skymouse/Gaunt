@@ -24,8 +24,9 @@ import net.rowf.gaunt.editor.cartographer.tools.Scalar;
  *
  * @author woeltjen
  */
-public class Toolbox extends JPanel {
+public class Toolbox extends JPanel implements Provider<Brush> {
     private Provider<Ink> inkwell;
+    private Brush         selected = Brush.EMPTY;
 
     private ButtonGroup                 group = new ButtonGroup();    
     private List<Selection>             listeners = new ArrayList<Selection>();
@@ -71,6 +72,13 @@ public class Toolbox extends JPanel {
     public void addListener(Selection s) {
         listeners.add(s);
     }
+
+    @Override
+    public Brush get() {
+        return selected;
+    }
+    
+    
     
     private void addOption(String name, Tool<?> tool) {
         JPanel option = new JPanel();
@@ -83,6 +91,7 @@ public class Toolbox extends JPanel {
     }
     
     private void select(Brush b) {
+        selected = b;
         for (Selection s : listeners) s.select(b);
     }
     
