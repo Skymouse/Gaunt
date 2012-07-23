@@ -7,7 +7,8 @@ package net.rowf.gaunt.engine.logic.control;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Facing;
 import net.rowf.gaunt.world.World;
-import net.rowf.gaunt.world.behavior.movement.Propulsion;
+import net.rowf.gaunt.world.behavior.Standard;
+import net.rowf.gaunt.world.behavior.movement.Maneuver;
 import net.rowf.gaunt.world.components.Speed;
 
 /**
@@ -39,7 +40,7 @@ public class Pilot extends Controller {
         if (i.magnitude() > 0) // TODO: Move out of controls!
             for (Speed s : e.get(Speed.class))
                 speed = Math.max(speed, s.get());
-        e.set(Propulsion.class, new Propulsion(speed / 100f));
+        e.set(Maneuver.class, speed > 0 ? Standard.WALK : Standard.STAND);
         
     }
     

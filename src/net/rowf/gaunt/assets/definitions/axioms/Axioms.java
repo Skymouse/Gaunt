@@ -32,6 +32,7 @@ public class Axioms implements Transcriber {
             new Axiom   (Standard.HOLOGRAPHY),
             new Axiom   (Standard.IMPACT),
             new Axiom   (Standard.RENDER),
+            new Axiom   (Standard.WANDER),
             new Axiom   (new Playable()),
             new Axiom   (new Start()),
             new Axiom   (new Facing(0)),
