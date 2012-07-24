@@ -23,6 +23,7 @@ public class Standard {
     public static final Collide  COLLIDE    = new Solid();
     public static final Render   HOLOGRAPHY = new Holography();
     public static final Impact   IMPACT     = new Expulsion();
+    public static final Maneuver RUN        = new Propulsion(1.5f);
     public static final Maneuver WALK       = new Propulsion();
     public static final Maneuver STAND      = new Propulsion(0f);
     public static final Think    WANDER     = new Wander(30);

@@ -13,4 +13,5 @@ public class Vector {
     public float getY() { return y; }
     public Vector add(Vector p) { return new Vector(x+p.x, y+p.y); }
     public Vector scale(float s)  { return new Vector(x*s,   y*s);   }
+    public float length() { return (float) Math.sqrt(x*x + y*y); }
 }

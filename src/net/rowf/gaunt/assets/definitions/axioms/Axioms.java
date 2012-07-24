@@ -10,6 +10,8 @@ import net.rowf.gaunt.assets.definitions.Dictionary;
 import net.rowf.gaunt.assets.definitions.Dictionary.Decoder;
 import net.rowf.gaunt.assets.definitions.Quality;
 import net.rowf.gaunt.assets.definitions.parser.Transcriber;
+import net.rowf.gaunt.game.intelligence.Hostile;
+import net.rowf.gaunt.game.intelligence.Hunt;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Facing;
 import net.rowf.gaunt.world.Replicant;
@@ -35,7 +37,9 @@ public class Axioms implements Transcriber {
             new Axiom   (Standard.WANDER),
             new Axiom   (new Playable()),
             new Axiom   (new Start()),
-            new Axiom   (new Facing(0)),
+            new Axiom   (new Hunt()),
+            new Axiom   (new Hostile(10)),
+            new Axiom   (new Facing((float)Math.PI)),
             new Scored  (new Strength(0)),
             new Scored  (new Speed(0)),
             new Scored  (new Mind(0)),

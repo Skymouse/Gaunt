@@ -16,7 +16,7 @@ public class Facing extends Vector implements Component {
         super ((float)Math.cos(radians), (float)Math.sin(radians));
         angle = radians;
     }
-
+    
     public float getAngle() { return angle; }
-
+    
 }
