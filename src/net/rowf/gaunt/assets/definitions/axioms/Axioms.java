@@ -7,16 +7,23 @@ package net.rowf.gaunt.assets.definitions.axioms;
 import java.util.Arrays;
 import java.util.List;
 import net.rowf.gaunt.assets.definitions.Dictionary;
-import net.rowf.gaunt.assets.definitions.Dictionary.Decoder;
 import net.rowf.gaunt.assets.definitions.Quality;
 import net.rowf.gaunt.assets.definitions.parser.Transcriber;
+import net.rowf.gaunt.assets.definitions.syntax.Decoder;
+import net.rowf.gaunt.assets.definitions.syntax.Syntax;
 import net.rowf.gaunt.game.intelligence.Hostile;
 import net.rowf.gaunt.game.intelligence.Hunt;
+import net.rowf.gaunt.game.projectile.Derive;
+import net.rowf.gaunt.game.projectile.Weapon;
+import net.rowf.gaunt.game.projectile.harm.Empowered.Mighty;
+import net.rowf.gaunt.game.projectile.harm.Empowered.Willful;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Facing;
+import net.rowf.gaunt.world.Prototype;
 import net.rowf.gaunt.world.Replicant;
 import net.rowf.gaunt.world.adventurer.Playable;
 import net.rowf.gaunt.world.behavior.Standard;
+import net.rowf.gaunt.world.behavior.movement.Propulsion;
 import net.rowf.gaunt.world.components.*;
 import net.rowf.gaunt.world.dungeon.spawns.Replicator;
 import net.rowf.gaunt.world.dungeon.spawns.Reuser;
@@ -30,24 +37,29 @@ import net.rowf.gaunt.world.dungeon.zone.Start;
  */
 public class Axioms implements Transcriber {
     private static final List<Transcriber> AXIOMS = Arrays.<Transcriber> asList(
-            new Axiom   (Standard.COLLIDE),
-            new Axiom   (Standard.HOLOGRAPHY),
-            new Axiom   (Standard.IMPACT),
-            new Axiom   (Standard.RENDER),
-            new Axiom   (Standard.WANDER),
-            new Axiom   (new Playable()),
-            new Axiom   (new Start()),
-            new Axiom   (new Hunt()),
-            new Axiom   (new Hostile(10)),
-            new Axiom   (new Facing((float)Math.PI)),
-            new Scored  (new Strength(0)),
-            new Scored  (new Speed(0)),
-            new Scored  (new Mind(0)),
-            new Scored  (new Toughness(0)),
-            new Scored  (new Health(0)),
-            new Scored  (new Power(0)),
-            new Scored  (new Experience(0)),
-            new Numeric (new Size(1))
+            new Axiom      (Standard.COLLIDE),
+            new Axiom      (Standard.HOLOGRAPHY),
+            new Axiom      (Standard.IMPACT),
+            new Axiom      (Standard.RENDER),
+            new Axiom      (Standard.WANDER),
+            new Axiom      (new Playable()),
+            new Axiom      (new Start()),
+            new Axiom      (new Hunt()),
+            new Axiom      (new Hostile(10)),
+            new Axiom      (new Facing((float)Math.PI)),
+            new Axiom      (new Propulsion()),
+            new Scored     (new Strength(0)),
+            new Scored     (new Speed(0)),
+            new Scored     (new Mind(0)),
+            new Scored     (new Toughness(0)),
+            new Scored     (new Health(0)),
+            new Scored     (new Power(0)),
+            new Scored     (new Experience(0)),
+            new Numeric    (new Size(1)),
+            new Numeric    (new Mighty()),
+            new Numeric    (new Willful()),
+            new Delegatory (new Weapon(new Specification())),
+            new Classified (new Derive(Derive.NONE))
     );
 
     @Override
@@ -127,9 +139,9 @@ public class Axioms implements Transcriber {
         }        
         @Override
         public void transcribe(Dictionary dictionary) {
-            dictionary.recordQuality(getName(), this, getDecoder());
+            dictionary.recordQuality(getName(), this, getDecoder(dictionary));
         }
-        public abstract Decoder<T> getDecoder();
+        public abstract Decoder<T> getDecoder(Dictionary dictionary);
     }
     
     private static class Numeric<C extends Parameterizable<Float>> extends Parameterized<C, Float> {
@@ -143,8 +155,8 @@ public class Axioms implements Transcriber {
 
                 
         @Override
-        public Decoder<Float> getDecoder() {
-            return Dictionary.FLOAT_DECODER;
+        public Decoder<Float> getDecoder(Dictionary dictionary) {
+            return Decoder.FLOAT;
         }
     }
 
@@ -160,8 +172,8 @@ public class Axioms implements Transcriber {
        
         
         @Override
-        public Decoder<Integer> getDecoder() {
-            return Dictionary.INTEGER_DECODER;
+        public Decoder<Integer> getDecoder(Dictionary dictionary) {
+            return Decoder.INTEGER;
         }
     }
     
@@ -177,9 +189,44 @@ public class Axioms implements Transcriber {
         
         
         @Override
-        public Decoder<String> getDecoder() {
-            return Dictionary.STRING_DECODER;
+        public Decoder<String> getDecoder(Dictionary dictionary) {
+            return Decoder.STRING;
         }
     }
+    
+    private static class Delegatory<C extends Parameterizable<Prototype>> extends Parameterized<C, Prototype> {
+
+        public Delegatory(C component, boolean o) {
+            super(component, o);
+        }
+
+        public Delegatory(C component) {
+            super(component);
+        }
+        
+        
+        @Override
+        public Decoder<Prototype> getDecoder(Dictionary dictionary) {
+            return dictionary.getSpecificationDecoder(Syntax.PARAMETERIZED);
+        }
+    }
+    
+    private static class Classified<C extends Parameterizable<Class<? extends Component>>> extends Parameterized<C, Class<? extends Component>> {
+
+        public Classified(C component, boolean o) {
+            super(component, o);
+        }
+
+        public Classified(C component) {
+            super(component);
+        }
+
+        @Override
+        public Decoder<Class<? extends Component>> getDecoder(Dictionary dictionary) {
+            return dictionary.getComponentClassParser();
+        }
+        
+    }
+    
     
 }

@@ -15,6 +15,7 @@ import net.rowf.gaunt.assets.Depot;
 import net.rowf.gaunt.assets.definitions.Dictionary;
 import net.rowf.gaunt.assets.definitions.grimoire.Grimoire;
 import net.rowf.gaunt.assets.definitions.parser.Text;
+import net.rowf.gaunt.assets.definitions.syntax.Decoder;
 import net.rowf.gaunt.assets.level.Convertor;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.assets.level.catalog.categories.*;
@@ -39,7 +40,8 @@ public class Compendium {
     public Compendium(Depot depot) {
         this.depot = depot;
         this.dictionary = 
-                new Grimoire(depot.retrieve(Text.class, "grimoire", Text.EMPTY));
+                new Grimoire(depot.retrieve(Text.class, "grimoire", Text.EMPTY));        
+        new Illustrator(depot, "illustrations").transcribe(dictionary);
     }
 
     public Catalog<Prototype> getCatalog() {

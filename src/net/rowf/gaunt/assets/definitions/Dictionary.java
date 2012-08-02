@@ -7,7 +7,12 @@ package net.rowf.gaunt.assets.definitions;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import net.rowf.gaunt.assets.definitions.syntax.Decoder;
 import net.rowf.gaunt.world.Component;
+import net.rowf.gaunt.world.Entity;
+import net.rowf.gaunt.world.Prototype;
 import net.rowf.gaunt.world.dungeon.spawns.Specification;
 import net.rowf.gaunt.world.dungeon.spawns.Specifier;
 
@@ -16,7 +21,12 @@ import net.rowf.gaunt.world.dungeon.spawns.Specifier;
  * @author woeltjen
  */
 public class Dictionary {
-    private static final Specification UNSPECIFIED = new Specification();
+    private static final Specification UNSPECIFIED = new Specification() {
+        @Override
+        public Entity spawn() {
+            return new Entity();
+        }        
+    };
 
     private Map<String, Qualifier>     qualifiers     = new HashMap<String, Qualifier>();
     private Map<String, Specification> specifications = new HashMap<String, Specification>();
@@ -52,10 +62,7 @@ public class Dictionary {
         specifications.put(descriptor.getName(), new Definition(this, descriptor));
     }
     
-    public interface Decoder<T> {
-        public T decode(String argument);
-    }
-    
+
     private class Qualifier<T> {
         private Decoder<T> decoder;
         private Quality<T> quality;
@@ -70,39 +77,7 @@ public class Dictionary {
         }                
     }
     
-    public static final Decoder<Integer> INTEGER_DECODER = new Decoder<Integer>() {
-        @Override
-        public Integer decode(String argument) {
-            try {
-                return Integer.parseInt(argument);
-            } catch (Exception e) {
-                return 0;
-            }
-        }
-    };
-    
-    public static final Decoder<Float> FLOAT_DECODER = new Decoder<Float>() {
-        @Override
-        public Float decode(String argument) {
-            try {
-                return Float.parseFloat(argument);
-            } catch (Exception e) {
-                return 0f;
-            }
-        }
-    };
-    
-    public static final Decoder<String> STRING_DECODER = new Decoder<String>() {
-        @Override
-        public String decode(String argument) {
-            try {
-                return argument;
-            } catch (Exception e) {
-                return argument;
-            }
-        }
-    };
-    
+  
     public Decoder<Class<? extends Component>> getComponentClassParser() {
         return componentClassParser;
     }
@@ -118,5 +93,16 @@ public class Dictionary {
             }
         }                
     };
+    
+    public Decoder<Prototype> getSpecificationDecoder(final Pattern parser) {
+        return new Decoder<Prototype>() {
+            @Override
+            public Prototype decode(String argument) {
+                Matcher m = parser.matcher(argument);
+                return (m.matches() ? getSpecification(m.group(1), m.group(2)) :
+                                    getSpecification(argument));
+            }
+        };
+    }
  
 }

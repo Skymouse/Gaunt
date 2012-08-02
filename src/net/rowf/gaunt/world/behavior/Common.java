@@ -20,6 +20,5 @@ public class Common {
     public static interface Task    extends Behavior<World>  {}
     public static interface Move    extends Behavior<World>  {}
     public static interface Collide extends Behavior<Entity> {}
-    public static interface Impact  extends Behavior<Entity> {}
-    public static interface Damage  extends Behavior<Entity> {}
+    public static interface Impact  extends Behavior<Entity> {}    
 }
