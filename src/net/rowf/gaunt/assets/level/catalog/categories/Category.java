@@ -5,9 +5,9 @@
 
 package net.rowf.gaunt.assets.level.catalog.categories;
 
-import net.rowf.gaunt.assets.level.Convertor;
+import net.rowf.gaunt.theory.Convertor;
 import net.rowf.gaunt.assets.level.Index;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 
 /**
  *

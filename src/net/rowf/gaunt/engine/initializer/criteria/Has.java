@@ -4,7 +4,7 @@
  */
 package net.rowf.gaunt.engine.initializer.criteria;
 
-import net.rowf.gaunt.engine.initializer.Criterion;
+import net.rowf.gaunt.theory.Criterion;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
 

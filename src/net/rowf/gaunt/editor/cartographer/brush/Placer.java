@@ -4,9 +4,11 @@
  */
 package net.rowf.gaunt.editor.cartographer.brush;
 
-import net.rowf.gaunt.assets.level.Convertor;
+import net.rowf.gaunt.world.entity.Prototype;
+import net.rowf.gaunt.world.components.Boundary;
+import net.rowf.gaunt.theory.Convertor;
 import net.rowf.gaunt.assets.level.Index;
-import net.rowf.gaunt.assets.level.Provider;
+import net.rowf.gaunt.theory.Provider;
 import net.rowf.gaunt.editor.cartographer.Architect;
 import net.rowf.gaunt.editor.cartographer.stylus.Cursor;
 import net.rowf.gaunt.world.*;

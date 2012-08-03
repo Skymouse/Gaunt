@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import javax.swing.*;
-import net.rowf.gaunt.assets.level.Provider;
+import net.rowf.gaunt.theory.Provider;
 import net.rowf.gaunt.editor.cartographer.brush.Box;
 import net.rowf.gaunt.editor.cartographer.brush.*;
 import net.rowf.gaunt.editor.cartographer.menu.Cartography;

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 
 /**
  *

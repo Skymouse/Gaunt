@@ -4,9 +4,10 @@
  */
 package net.rowf.gaunt.engine.initializer;
 
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.theory.Criterion;
+import net.rowf.gaunt.world.components.Boundary;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.components.Size;
 

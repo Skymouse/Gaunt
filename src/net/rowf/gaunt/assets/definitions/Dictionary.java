@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import net.rowf.gaunt.assets.definitions.syntax.Decoder;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.dungeon.spawns.Specification;
 import net.rowf.gaunt.world.dungeon.spawns.Specifier;
 

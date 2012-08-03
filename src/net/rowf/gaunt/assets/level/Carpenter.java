@@ -5,8 +5,9 @@
 
 package net.rowf.gaunt.assets.level;
 
+import net.rowf.gaunt.theory.Convertor;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 
 /**
  *

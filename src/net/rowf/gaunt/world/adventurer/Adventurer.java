@@ -6,7 +6,7 @@ package net.rowf.gaunt.world.adventurer;
 
 import net.rowf.gaunt.engine.renderer.Hologram;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.behavior.Common.Render;
 import net.rowf.gaunt.world.behavior.Standard;
 

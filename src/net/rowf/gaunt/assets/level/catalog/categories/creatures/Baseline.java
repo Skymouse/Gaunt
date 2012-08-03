@@ -4,7 +4,7 @@
  */
 package net.rowf.gaunt.assets.level.catalog.categories.creatures;
 
-import net.rowf.gaunt.assets.level.Convertor;
+import net.rowf.gaunt.theory.Convertor;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.world.components.Health;
 import net.rowf.gaunt.world.dungeon.spawns.Replicator;

@@ -3,10 +3,10 @@
  * and open the template in the editor.
  */
 
-package net.rowf.gaunt.assets.level.swing;
+package net.rowf.gaunt.assets.resource.maps;
 
 import java.awt.image.BufferedImage;
-import net.rowf.gaunt.assets.level.Convertor;
+import net.rowf.gaunt.theory.Convertor;
 import net.rowf.gaunt.assets.level.Coordinate;
 import net.rowf.gaunt.assets.level.Index;
 

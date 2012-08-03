@@ -6,7 +6,6 @@
 package net.rowf.gaunt.world.behavior;
 
 import net.rowf.gaunt.engine.renderer.View;
-import net.rowf.gaunt.world.Behavior;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.World;
 

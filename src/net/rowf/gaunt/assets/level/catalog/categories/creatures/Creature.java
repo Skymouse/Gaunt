@@ -4,6 +4,9 @@
  */
 package net.rowf.gaunt.assets.level.catalog.categories.creatures;
 
+import net.rowf.gaunt.world.components.Facing;
+import net.rowf.gaunt.world.entity.Prototype;
+import net.rowf.gaunt.world.components.Boundary;
 import net.rowf.gaunt.world.*;
 import net.rowf.gaunt.world.behavior.Standard;
 

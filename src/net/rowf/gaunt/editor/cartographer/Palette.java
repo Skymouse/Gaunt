@@ -13,11 +13,11 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import net.rowf.gaunt.assets.level.Convertor;
+import net.rowf.gaunt.theory.Convertor;
 import net.rowf.gaunt.assets.level.Index;
-import net.rowf.gaunt.assets.level.Provider;
+import net.rowf.gaunt.theory.Provider;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.behavior.Common.Task;
 

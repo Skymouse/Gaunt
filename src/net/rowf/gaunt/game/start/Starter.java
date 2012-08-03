@@ -10,7 +10,7 @@ import net.rowf.gaunt.engine.initializer.Injector;
 import net.rowf.gaunt.engine.initializer.criteria.Has;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.behavior.Common.Task;
 import net.rowf.gaunt.world.dungeon.zone.Start;

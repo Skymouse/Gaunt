@@ -3,7 +3,10 @@
  * and open the template in the editor.
  */
 
-package net.rowf.gaunt.world;
+package net.rowf.gaunt.world.behavior;
+
+import net.rowf.gaunt.world.Component;
+import net.rowf.gaunt.world.Entity;
 
 /**
  *

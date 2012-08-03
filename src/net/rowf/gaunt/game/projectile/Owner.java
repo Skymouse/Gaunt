@@ -4,7 +4,7 @@
  */
 package net.rowf.gaunt.game.projectile;
 
-import net.rowf.gaunt.assets.level.Provider;
+import net.rowf.gaunt.theory.Provider;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
 

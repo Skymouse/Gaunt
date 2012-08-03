@@ -4,7 +4,7 @@
  */
 package net.rowf.gaunt.game.intelligence;
 
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.world.components.Boundary;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.adventurer.Playable;

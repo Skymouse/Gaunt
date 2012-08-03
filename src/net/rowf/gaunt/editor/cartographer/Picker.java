@@ -9,7 +9,7 @@ import java.awt.Graphics;
 import java.util.Collection;
 import java.util.List;
 import net.rowf.gaunt.engine.renderer.swing.Canvas;
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.world.components.Boundary;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Vector;
 import net.rowf.gaunt.world.behavior.Painter;

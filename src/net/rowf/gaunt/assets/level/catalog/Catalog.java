@@ -6,7 +6,7 @@
 package net.rowf.gaunt.assets.level.catalog;
 
 import java.util.List;
-import net.rowf.gaunt.assets.level.Convertor;
+import net.rowf.gaunt.theory.Convertor;
 import net.rowf.gaunt.assets.level.Index;
 
 /**

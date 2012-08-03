@@ -4,9 +4,9 @@
  */
 package net.rowf.gaunt.game.intelligence;
 
-import net.rowf.gaunt.assets.definitions.Pair;
-import net.rowf.gaunt.engine.initializer.Criterion;
-import net.rowf.gaunt.world.Behavior;
+import net.rowf.gaunt.theory.Pair;
+import net.rowf.gaunt.theory.Criterion;
+import net.rowf.gaunt.world.behavior.Behavior;
 import net.rowf.gaunt.world.Entity;
 
 /**

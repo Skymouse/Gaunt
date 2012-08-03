@@ -4,7 +4,7 @@
  */
 package net.rowf.gaunt.engine.renderer;
 
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.world.components.Boundary;
 
 /**
  *

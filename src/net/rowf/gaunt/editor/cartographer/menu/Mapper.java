@@ -13,7 +13,7 @@ import net.rowf.gaunt.editor.cartographer.Cartographer;
 import net.rowf.gaunt.engine.renderer.View;
 import net.rowf.gaunt.game.Game;
 import net.rowf.gaunt.game.Round;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.dungeon.spawns.Specification;
 
 /**

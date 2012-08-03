@@ -4,6 +4,7 @@
  */
 package net.rowf.gaunt.engine.initializer;
 
+import net.rowf.gaunt.theory.Criterion;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.dungeon.spawns.Specification;
 

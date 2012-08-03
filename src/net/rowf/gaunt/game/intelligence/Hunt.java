@@ -4,7 +4,7 @@
  */
 package net.rowf.gaunt.game.intelligence;
 
-import net.rowf.gaunt.engine.initializer.Criterion;
+import net.rowf.gaunt.theory.Criterion;
 import net.rowf.gaunt.engine.initializer.criteria.Has;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.behavior.Standard;

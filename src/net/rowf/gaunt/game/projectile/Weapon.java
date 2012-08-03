@@ -4,6 +4,8 @@
  */
 package net.rowf.gaunt.game.projectile;
 
+import net.rowf.gaunt.world.components.Facing;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.*;
 import net.rowf.gaunt.world.components.Parameterizable;
 

@@ -5,6 +5,7 @@
 
 package net.rowf.gaunt;
 
+import net.rowf.gaunt.world.entity.Prototype;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import javax.swing.JFrame;

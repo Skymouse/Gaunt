@@ -4,6 +4,7 @@
  */
 package net.rowf.gaunt.assets.definitions;
 
+import net.rowf.gaunt.theory.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;

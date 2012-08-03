@@ -6,10 +6,10 @@
 package net.rowf.gaunt.world.dungeon;
 
 import java.util.Arrays;
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.world.components.Boundary;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.behavior.Common.Task;
 import net.rowf.gaunt.world.components.Size;

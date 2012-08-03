@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import net.rowf.gaunt.engine.renderer.Sprite;
 import net.rowf.gaunt.engine.renderer.Sprite.Drawable;
 import net.rowf.gaunt.engine.renderer.View;
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.world.components.Boundary;
 
 /**
  *

@@ -7,7 +7,7 @@ package net.rowf.gaunt.world.behavior;
 
 import net.rowf.gaunt.engine.renderer.Animation;
 import net.rowf.gaunt.engine.renderer.View;
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.world.components.Boundary;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.behavior.Common.Render;

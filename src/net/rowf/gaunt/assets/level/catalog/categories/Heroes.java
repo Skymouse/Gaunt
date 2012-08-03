@@ -4,10 +4,10 @@
  */
 package net.rowf.gaunt.assets.level.catalog.categories;
 
-import net.rowf.gaunt.assets.level.Convertor;
+import net.rowf.gaunt.theory.Convertor;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.engine.renderer.Hologram;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.behavior.Common.Render;
 import net.rowf.gaunt.world.behavior.Standard;
 import net.rowf.gaunt.world.dungeon.Spawn;

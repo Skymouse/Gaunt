@@ -4,7 +4,7 @@
  */
 package net.rowf.gaunt.engine.renderer;
 
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.world.components.Boundary;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.Vector;
 import net.rowf.gaunt.world.World;

@@ -18,7 +18,7 @@ import net.rowf.gaunt.engine.timing.Ticker;
 import net.rowf.gaunt.game.start.Starter;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.World;
 
 /**

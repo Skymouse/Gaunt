@@ -5,7 +5,7 @@
 package net.rowf.gaunt.world.dungeon.spawns;
 
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Replicant;
+import net.rowf.gaunt.world.components.Replicant;
 
 /**
  *

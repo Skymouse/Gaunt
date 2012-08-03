@@ -14,7 +14,7 @@ import net.rowf.gaunt.assets.level.Carpenter;
 import net.rowf.gaunt.assets.level.Populator;
 import net.rowf.gaunt.assets.level.catalog.Compendium;
 import net.rowf.gaunt.assets.level.catalog.categories.Numerology;
-import net.rowf.gaunt.assets.level.swing.Map;
+import net.rowf.gaunt.assets.resource.maps.Map;
 import net.rowf.gaunt.engine.renderer.Gallery;
 import net.rowf.gaunt.engine.renderer.Sprite;
 import net.rowf.gaunt.engine.renderer.swing.Image;

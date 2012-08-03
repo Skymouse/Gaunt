@@ -12,7 +12,7 @@ import javax.swing.JScrollBar;
 import net.rowf.gaunt.editor.cartographer.viewer.Zoomer;
 import net.rowf.gaunt.engine.renderer.Camera;
 import net.rowf.gaunt.engine.renderer.swing.Canvas;
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.world.components.Boundary;
 import net.rowf.gaunt.world.Vector;
 
 /**

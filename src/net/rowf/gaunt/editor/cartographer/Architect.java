@@ -6,7 +6,7 @@ package net.rowf.gaunt.editor.cartographer;
 
 import java.awt.image.BufferedImage;
 import net.rowf.gaunt.assets.level.Carpenter;
-import net.rowf.gaunt.assets.level.Convertor;
+import net.rowf.gaunt.theory.Convertor;
 import net.rowf.gaunt.assets.level.Coordinate;
 import net.rowf.gaunt.assets.level.Index;
 import net.rowf.gaunt.assets.level.Populator;

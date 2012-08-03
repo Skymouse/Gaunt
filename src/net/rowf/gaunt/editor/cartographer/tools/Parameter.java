@@ -6,7 +6,7 @@ package net.rowf.gaunt.editor.cartographer.tools;
 
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
-import net.rowf.gaunt.assets.level.Provider;
+import net.rowf.gaunt.theory.Provider;
 
 /**
  *

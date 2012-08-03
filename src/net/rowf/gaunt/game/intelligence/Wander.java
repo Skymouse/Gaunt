@@ -5,7 +5,7 @@
 package net.rowf.gaunt.game.intelligence;
 
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Facing;
+import net.rowf.gaunt.world.components.Facing;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.behavior.Common.Move;
 import net.rowf.gaunt.world.behavior.Common.Think;

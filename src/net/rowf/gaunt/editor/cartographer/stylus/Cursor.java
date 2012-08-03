@@ -10,10 +10,10 @@ import net.rowf.gaunt.editor.cartographer.brush.Brush;
 import net.rowf.gaunt.engine.logic.control.Locator;
 import net.rowf.gaunt.engine.logic.control.swing.Mouse;
 import net.rowf.gaunt.engine.renderer.View;
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.world.components.Boundary;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.behavior.Common.Render;
 import net.rowf.gaunt.world.behavior.Painter;
 

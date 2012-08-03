@@ -4,8 +4,6 @@
  */
 package net.rowf.gaunt.world.components;
 
-import net.rowf.gaunt.world.Replicant;
-
 /**
  *
  * @author woeltjen

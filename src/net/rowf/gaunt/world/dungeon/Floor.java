@@ -9,7 +9,7 @@ import java.util.Arrays;
 import net.rowf.gaunt.engine.renderer.Sprite;
 import net.rowf.gaunt.world.Component;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Prototype;
+import net.rowf.gaunt.world.entity.Prototype;
 import net.rowf.gaunt.world.behavior.Standard;
 
 /**

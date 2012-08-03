@@ -1,5 +1,6 @@
 package net.rowf.gaunt.world;
 
+import net.rowf.gaunt.world.components.Boundary;
 import java.util.*;
 
 /**

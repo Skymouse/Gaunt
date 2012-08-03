@@ -8,10 +8,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.List;
-import net.rowf.gaunt.assets.definitions.Pair;
-import net.rowf.gaunt.assets.level.Provider;
+import net.rowf.gaunt.theory.Pair;
+import net.rowf.gaunt.theory.Provider;
 import net.rowf.gaunt.editor.cartographer.brush.Brush;
-import net.rowf.gaunt.engine.initializer.Criterion;
+import net.rowf.gaunt.theory.Criterion;
 
 /**
  *

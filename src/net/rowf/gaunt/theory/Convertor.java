@@ -2,12 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.rowf.gaunt.engine.initializer;
+
+package net.rowf.gaunt.theory;
 
 /**
  *
  * @author woeltjen
  */
-public interface Criterion<E> {
-    public boolean consider(E e);
+public interface Convertor<K, V> {
+    public V convert(K key);
+    public K maximum();
 }

@@ -5,6 +5,8 @@
 
 package net.rowf.gaunt.world.dungeon;
 
+import net.rowf.gaunt.world.entity.Prototype;
+import net.rowf.gaunt.world.components.Boundary;
 import java.util.Arrays;
 import net.rowf.gaunt.engine.renderer.View;
 import net.rowf.gaunt.world.*;

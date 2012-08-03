@@ -4,9 +4,9 @@
  */
 package net.rowf.gaunt.game.intelligence;
 
-import net.rowf.gaunt.world.Boundary;
+import net.rowf.gaunt.world.components.Boundary;
 import net.rowf.gaunt.world.Entity;
-import net.rowf.gaunt.world.Facing;
+import net.rowf.gaunt.world.components.Facing;
 import net.rowf.gaunt.world.Vector;
 import net.rowf.gaunt.world.World;
 import net.rowf.gaunt.world.behavior.Common.Move;

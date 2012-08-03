@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import net.rowf.gaunt.assets.definitions.Descriptor;
 import net.rowf.gaunt.assets.definitions.Descriptor.Interpretation;
 import net.rowf.gaunt.assets.definitions.Dictionary;
-import net.rowf.gaunt.assets.definitions.Pair;
+import net.rowf.gaunt.theory.Pair;
 import net.rowf.gaunt.assets.definitions.interpretations.Declarator;
 import net.rowf.gaunt.assets.definitions.interpretations.Descriptive;
 import net.rowf.gaunt.assets.definitions.syntax.Syntax;
