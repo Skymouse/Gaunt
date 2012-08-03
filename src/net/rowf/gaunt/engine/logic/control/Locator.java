@@ -14,7 +14,7 @@ import net.rowf.gaunt.world.World;
  *
  * @author woeltjen
  */
-public class Locator extends Controller {
+public class Locator extends Control {
     private static final Vector   NONE = new Vector(0f, 0f);
     private static final Boundary UNIT = new Boundary(1f);
 

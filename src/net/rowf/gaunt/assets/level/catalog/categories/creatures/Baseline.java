@@ -18,7 +18,7 @@ public class Baseline implements Convertor<Index, Specification> {
     private static final Index SIZE = new Index(16);
     
     @Override
-    public Specification convert(Index key) {
+    public Specification evaluate(Index key) {
         Specification s = new Specification();
         
         s.add(new Replicator(new Health(key.get() * 10 + 10)));

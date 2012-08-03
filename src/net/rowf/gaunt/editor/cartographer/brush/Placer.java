@@ -46,7 +46,7 @@ public class Placer implements Ink {
                             w.removeEntity(e);
         for (Dungeon d : dungeon.first(Dungeon.class))
             d.setEntity((int) v.getX(), (int) v.getY(), 
-                    convertor.convert(index).spawn());
+                    convertor.evaluate(index).spawn());
     }
     
 }

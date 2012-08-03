@@ -107,7 +107,7 @@ public class Compendium {
     private Convertor<Index, Sprite> makeTileset (final Animation anim) {
         return new Convertor<Index, Sprite>() {
             @Override
-            public Sprite convert(Index key) {
+            public Sprite evaluate(Index key) {
                 return anim.getSprite(key.get() % anim.frames());
             }
             @Override
@@ -119,7 +119,7 @@ public class Compendium {
 
     private Convertor<Index, Sprite> makeTileset (final Gallery gallery) {
         return new Convertor<Index, Sprite>() {
-            public Sprite convert(Index key) {
+            public Sprite evaluate(Index key) {
                 int index  = key.get();
                 int row    = index % gallery.columns();
                 int column = index / gallery.columns();
@@ -136,7 +136,7 @@ public class Compendium {
         return new Convertor<Index, Hologram>() {
 
             @Override
-            public Hologram convert(Index key) {
+            public Hologram evaluate(Index key) {
                 return new Rotary(
                         new Column (gallery, key.get() % gallery.columns()),
                         4,
@@ -169,7 +169,7 @@ public class Compendium {
         }
         
         @Override
-        public Prototype convert(Index key) {
+        public Prototype evaluate(Index key) {
             return new NumberedPrototype(key.get());
         }
         

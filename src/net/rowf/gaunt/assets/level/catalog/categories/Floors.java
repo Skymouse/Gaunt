@@ -22,8 +22,8 @@ public class Floors extends Category {
         this.tiles = tiles;
     }
 
-    public Prototype convert(Index key) {
-        return new Floor(tiles.convert(key));
+    public Prototype evaluate(Index key) {
+        return new Floor(tiles.evaluate(key));
     }
 
 }

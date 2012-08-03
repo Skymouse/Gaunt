@@ -46,7 +46,7 @@ public class Palette extends JPanel implements Provider<Index> {
         
         List<Entity> group = new ArrayList<Entity>();
         for (int i = 0; i < 256; i++) {
-            examples[i] = spawnEntity(convertor.convert(new Index(i)));
+            examples[i] = spawnEntity(convertor.evaluate(new Index(i)));
             choices [i] = new Picker(64, Arrays.asList(examples[i]));
             choices [i].addMouseListener(new Choice(i));
             choices [i].setBorder(BorderFactory.createLineBorder(Color.ORANGE));

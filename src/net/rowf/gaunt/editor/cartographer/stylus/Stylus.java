@@ -5,7 +5,7 @@
 package net.rowf.gaunt.editor.cartographer.stylus;
 
 import net.rowf.gaunt.editor.cartographer.brush.Brush;
-import net.rowf.gaunt.engine.logic.control.Controller;
+import net.rowf.gaunt.engine.logic.control.Control;
 import net.rowf.gaunt.engine.logic.control.Input;
 import net.rowf.gaunt.engine.logic.control.swing.Mouse;
 import net.rowf.gaunt.engine.renderer.View;
@@ -18,7 +18,7 @@ import net.rowf.gaunt.world.behavior.Common.Render;
  *
  * @author woeltjen
  */
-public class Stylus extends Controller {
+public class Stylus extends Control {
     private int   frequency;
     private Brush brush;
     

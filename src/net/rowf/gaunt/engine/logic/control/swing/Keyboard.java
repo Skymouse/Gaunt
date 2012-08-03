@@ -68,9 +68,17 @@ public class Keyboard implements Input, KeyListener {
     public void poll() {
         for (int i = 0; i < state.length; i++) state[i] = pressed[i] ? 1f : 0f;
     }
+    
+    public Input key(int index) {
+        return new Key(index);
+    }
 
     private class Key implements Input {
         private int index;
+
+        public Key(int index) {
+            this.index = index;
+        }
 
         @Override
         public int axes() {

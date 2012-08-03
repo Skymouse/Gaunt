@@ -43,7 +43,7 @@ public class Architect<T> implements Convertor<Coordinate, Index> {
     }
 
     @Override
-    public Index convert(Coordinate key) {
+    public Index evaluate(Coordinate key) {
         return new Index(get(key.getX(), key.getY()));
     }
 

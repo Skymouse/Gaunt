@@ -12,11 +12,11 @@ import net.rowf.gaunt.world.behavior.Common.Task;
  *
  * @author woeltjen
  */
-public abstract class Controller implements Task {
+public abstract class Control implements Task {
     private Input input;
     private int   next = 0;
     
-    public Controller (Input input) {
+    public Control (Input input) {
         this.input = input;
     }
     

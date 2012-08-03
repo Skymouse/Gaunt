@@ -34,7 +34,7 @@ public class Mapper implements Cartography {
 
     @Override
     public void execute(View view, Specification player) {
-        Prototype p = player.apply(cartographer.getCompendium().getHeroes().convert(new Index(0)));
+        Prototype p = player.apply(cartographer.getCompendium().getHeroes().evaluate(new Index(0)));
         Prototype l = cartographer.getLevel();
         final Game game = new Round(p, view, Arrays.asList(l));
         new Thread() {            

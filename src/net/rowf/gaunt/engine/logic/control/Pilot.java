@@ -15,7 +15,7 @@ import net.rowf.gaunt.world.components.Speed;
  *
  * @author woeltjen
  */
-public class Pilot extends Controller {
+public class Pilot extends Control {
 
     public Pilot(Input input) {
         super(input);

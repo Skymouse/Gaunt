@@ -56,7 +56,7 @@ public class Main {
         Cartographer cartographer = new Cartographer(new Architect(60,60),
                                                      compendium);
         Round game = new Round(
-                player.apply(compendium.getHeroes().convert(new Index(0))),
+                player.apply(compendium.getHeroes().evaluate(new Index(0))),
                 canvas,
                 Arrays.<Prototype>asList(new Level(depot.retrieve(Populator.class, "map01")))
                 );

@@ -29,15 +29,15 @@ public class Creatures extends Category {
              index.get() < maximum().get(); 
              index = new Index(index.get() + 1)) {
          
-            Specification s = specifications.convert(index).apply(prototype);
-            s.add(new Reuser(Hologram.class, holograms.convert(index)));
+            Specification s = specifications.evaluate(index).apply(prototype);
+            s.add(new Reuser(Hologram.class, holograms.evaluate(index)));
             s.add(new Reuser(Render.class, Standard.HOLOGRAPHY));
             prototypes[index.get()] = new Spawn( s );            
         }
     }
     
     @Override
-    public Prototype convert(Index key) {
+    public Prototype evaluate(Index key) {
         return prototypes[key.get()];
     }
     

@@ -25,7 +25,7 @@ public class Carpenter<T> implements Populator {
     }
 
     public Entity getEntity(int x, int y) {
-        return palette.convert(plan.convert(new Coordinate(x, y))).spawn();
+        return palette.evaluate(plan.evaluate(new Coordinate(x, y))).spawn();
     }
 
     public int getHeight() {

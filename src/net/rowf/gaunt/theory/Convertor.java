@@ -9,7 +9,6 @@ package net.rowf.gaunt.theory;
  *
  * @author woeltjen
  */
-public interface Convertor<K, V> {
-    public V convert(K key);
+public interface Convertor<K, V> extends Function<V, K> {
     public K maximum();
 }

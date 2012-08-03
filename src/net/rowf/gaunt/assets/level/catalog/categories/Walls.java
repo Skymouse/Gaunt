@@ -22,11 +22,11 @@ public class Walls extends Category {
         this.tiles = tiles;
     }
 
-    public Prototype convert(Index key) {
+    public Prototype evaluate(Index key) {
         int index = key.get();
 
-        if (index > 0) return new Wall(tiles.convert(key), index);
-        else           return new Wall(tiles.convert(key));
+        if (index > 0) return new Wall(tiles.evaluate(key), index);
+        else           return new Wall(tiles.evaluate(key));
     }
 
 }

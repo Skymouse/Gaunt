@@ -22,7 +22,7 @@ public class Map implements Convertor<Coordinate, Index> {
         this.image   = image;
     }
 
-    public Index convert(Coordinate key) {
+    public Index evaluate(Coordinate key) {
         index = image.getRaster().getPixel(key.getX(), key.getY(), index);
         return new Index(index[0]);
     }

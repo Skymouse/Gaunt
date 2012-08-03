@@ -30,7 +30,7 @@ public class Catalog<T> implements Convertor<Index, T> {
 
         for (Convertor<Index, T> convertor : convertors) {
             for (int i = 0; i < convertor.maximum().get(); i++)
-                conversions[base+i] = convertor.convert(new Index(i));
+                conversions[base+i] = convertor.evaluate(new Index(i));
             base += convertor.maximum().get();
         }
 
@@ -43,7 +43,7 @@ public class Catalog<T> implements Convertor<Index, T> {
         this.maximum = new Index(size);
     }
 
-    public T convert(Index key) {
+    public T evaluate(Index key) {
         if (key.get() >= conversions.length) return defacto;
         if (conversions[key.get()] == null)  return defacto;
         return conversions[key.get()];

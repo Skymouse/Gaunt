@@ -36,7 +36,7 @@ public class Numerology implements Convertor<Index, Specification> {
     }
     
     @Override
-    public Specification convert(Index key) {
+    public Specification evaluate(Index key) {
         if (convertor.containsKey(key.get())) return convertor.get(key.get());
         else                                  return EMPTY;
     }

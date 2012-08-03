@@ -24,13 +24,13 @@ public class Zones extends Category {
              index.get() < maximum().get(); 
              index = new Index(index.get() + 1)) {
          
-            Specification s = specifications.convert(index).apply(prototype);
+            Specification s = specifications.evaluate(index).apply(prototype);
             prototypes[index.get()] = new Spawn( s );            
         }
     }
     
     @Override
-    public Prototype convert(Index key) {
+    public Prototype evaluate(Index key) {
         return prototypes[key.get()];
     }
     
