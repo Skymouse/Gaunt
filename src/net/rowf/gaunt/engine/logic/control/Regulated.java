@@ -17,7 +17,7 @@ public class Regulated extends Invocation {
     private Function<Integer, Entity> regulator;
     private int                       frequency;
 
-    public Regulated(Function<Integer, Entity> regulator, Class<Behavior<World>> invocation, Input input) {
+    public Regulated(Function<Integer, Entity> regulator, Class<? extends Behavior<World>> invocation, Input input) {
         super(invocation, input, 1);
         this.frequency = 1;
         this.regulator = regulator;

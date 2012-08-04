@@ -13,10 +13,10 @@ import net.rowf.gaunt.world.behavior.Behavior;
  * @author woeltjen
  */
 public class Invocation extends Control {
-    private Class<Behavior<World>> invocation;
+    private Class<? extends Behavior<World>> invocation;
     private int                    frequency;
 
-    public Invocation(Class<Behavior<World>> invocation, Input input, int frequency) {
+    public Invocation(Class<? extends Behavior<World>> invocation, Input input, int frequency) {
         super(input);
         this.invocation = invocation;
         this.frequency  = frequency;
