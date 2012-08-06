@@ -29,7 +29,7 @@ public class Resources extends Depot {
     private static BufferedImage getImage(String key) {
             try {
                 return ImageIO.read(
-                        Resources.class.getResourceAsStream(key + ".png"));
+                        Resources.class.getResourceAsStream("sprites/" + key + ".png"));
             } catch (Exception e) {
                 return new BufferedImage(SIZE, SIZE, BufferedImage.TYPE_BYTE_INDEXED);
             }
@@ -54,7 +54,7 @@ public class Resources extends Depot {
             }
 
             public Sprite getSprite(int r, int c) {
-                return sprites[r * cols + c];
+                return sprites[(r * cols + c) % sprites.length];
             }
 
             public int rows() {

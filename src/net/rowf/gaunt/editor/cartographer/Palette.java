@@ -15,6 +15,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import net.rowf.gaunt.theory.Convertor;
 import net.rowf.gaunt.assets.level.Index;
+import net.rowf.gaunt.editor.cartographer.viewer.Labeler;
+import net.rowf.gaunt.engine.Module;
 import net.rowf.gaunt.theory.Provider;
 import net.rowf.gaunt.world.Entity;
 import net.rowf.gaunt.world.entity.Prototype;
@@ -32,7 +34,9 @@ public class Palette extends JPanel implements Provider<Index> {
     private Picker[] categories = new Picker[16];
     private Picker[] choices    = new Picker[256];
     private Entity[] examples   = new Entity[256];
-    
+
+    private Module labeler = new Labeler();
+
     private JPanel top    = new JPanel();
     private JPanel bottom = new JPanel();
     
@@ -87,8 +91,10 @@ public class Palette extends JPanel implements Provider<Index> {
     private Entity spawnEntity(Prototype p) {
         World w = new World();
         Entity e = p.spawn();
+        w.addEntity(e);
         for (Task  t       : e.get(Task.class)) t.invoke(e, w);
         w.tick(1);
+        labeler.run(w);
         for (Entity spawned : w.getEntities()   ) e = spawned;
         return e;
     }

@@ -50,14 +50,23 @@ public class Compendium {
         //TODO: Move this highly coupled stuff somewhere ???
         Gallery tiles   = depot.retrieve(Gallery.class, "wall_tiles");
         Gallery sprites = depot.retrieve(Gallery.class, "sprites");
-        categories.add(new Floors (makeTileset(new Row(tiles, 0)))); // 0
-        categories.add(new Walls  (makeTileset(new Row(tiles, 1)))); // 16
-        categories.add(new Walls  (makeTileset(new Row(tiles, 2)))); // 32
-        categories.add(new Walls  (makeTileset(new Row(tiles, 3)))); // 48
-        categories.add(makeCreatures("00")); //64 creatures
-        categories.add(makeCreatures("00")); //80 pickups
-        categories.add(makeZones("zones"));  //96 spwans
-        categories.add(new Numbers());
+        categories.add(new Floors     (makeTileset(new Row(tiles, 0)))); // 0  floors
+        categories.add(new Walls      (makeTileset(new Row(tiles, 1)))); // 16 walls
+        categories.add(new Crumblers  (makeTileset(new Row(tiles, 2)))); // 32 crumbly
+        categories.add(new Walls      (makeTileset(new Row(tiles, 3)))); // 48 doors
+        categories.add(new Floors     (makeTileset(new Row(tiles, 4)))); // 64 items???
+        categories.add(new Floors     (makeTileset(new Row(tiles, 5)))); // 80 artifacts??
+        categories.add(new Floors     (makeTileset(new Row(tiles, 6)))); // 96 decor???
+        categories.add(makeZones("zones"));                              //112 spawns
+
+        categories.add(makeCreatures("hominids")); // 128 creatures
+        categories.add(makeCreatures("undeads"));
+        categories.add(makeCreatures("animals"));
+        categories.add(makeCreatures("denizens"));
+        categories.add(makeCreatures("elementals"));
+        categories.add(makeCreatures("demons"));
+        categories.add(makeCreatures("ancients"));
+        categories.add(makeCreatures("bosses")); 
 
         /*Original:
          * 0   Floors

@@ -44,7 +44,7 @@ public class Parser implements Transcriber {
             if (line.isEmpty() && !passage.isEmpty()) {
                 dictionary.record(new Descriptor(passage, GRAMMAR));
                 passage.clear();
-            } else {
+            } else if (!line.isEmpty()) {
                 passage.add(line);
             }
         }
